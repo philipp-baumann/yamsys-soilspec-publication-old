@@ -3,8 +3,8 @@
 ## There is a description of the columns (header name) and details about
 ## laboratory reference analysis method below
 ################################################################################
-<sample_ID>:    Consists of
-			<country abbreviation>_<site abbreviation>_<field_no>
+<sample_ID>:      Consists of
+			  <country abbreviation>_<site abbreviation>_<field_no>
 				<country abbreviation>:
 					"BF": Burkina Faso;
 					"CI": Côte d'Ivoire
@@ -17,20 +17,6 @@
 				<field_no>:
 					number from 01 to 20;
 					separate numbering at each of the YAMSYS sites
-<sample_ID>:  Consists of
-				<country abbreviation>_<site abbreviation>_<field_no>
-					<country abbreviation>:
-						"BF": Burkina Faso;
-						"CI": Côte d'Ivoire
-					<site abbreviation>:
-						"lo": Léo (Burkina Faso);
-						"mo": Midebdo (Burkina Faso)
-						"tb": Tiénningboué (Côte d'Ivoire);
-						"sb": Liliyo (Côte d'Ivoire)
-							(previously named Soubré)
-					<field_no>:
-						number from 01 to 20;
-						separate numbering at each of the YAMSYS sites
 <country>: 		Consists of <country abbreviation>:
 					"BF": Burkina Faso; "CI": Côte d'Ivoire
 <site>: 		Consists of <location abbreviation>:
@@ -38,7 +24,6 @@
 					"mo": Midebdo (Burkina Faso)
 					"tb": Tiénningboué (Côte d'Ivoire);
 					"sb": Liliyo (Côte d'Ivoire)
-<material>: 	<soils>
 <S>: 			Total sulfur in mg per kg dry soil; measured by elemental analyzer (vario PYRO cube)
 					coupled to a mass spectrometer (IsoPrime100, Isoprime Ltd., UK)
 <C>: 			Total carbon in g per kg dry soil; measured by elemental analyzer (vario PYRO cube)
