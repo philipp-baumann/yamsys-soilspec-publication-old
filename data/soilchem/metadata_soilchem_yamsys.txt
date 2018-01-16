@@ -3,7 +3,7 @@
 ## There is a description of the columns (header name) and details about
 ## laboratory reference analysis method below
 ################################################################################
-<sample_ID>:	Consists of
+<sample_ID>:  Consists of
 				<country abbreviation>_<site abbreviation>_<field_no>
 					<country abbreviation>:
 						"BF": Burkina Faso;
