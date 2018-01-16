@@ -3,7 +3,6 @@
 ## There is a description of the columns (header name) and details about
 ## laboratory reference analysis method below
 ################################################################################
-<<<<<<< HEAD
 <sample_ID>:    Consists of
 			<country abbreviation>_<site abbreviation>_<field_no>
 				<country abbreviation>:
@@ -18,7 +17,6 @@
 				<field_no>:
 					number from 01 to 20;
 					separate numbering at each of the YAMSYS sites
-=======
 <sample_ID>:  Consists of
 				<country abbreviation>_<site abbreviation>_<field_no>
 					<country abbreviation>:
@@ -33,7 +31,6 @@
 					<field_no>:
 						number from 01 to 20;
 						separate numbering at each of the YAMSYS sites
->>>>>>> aaedc6f56fc7e46ae2e5c6d0b004f6019027e9eb
 <country>: 		Consists of <country abbreviation>:
 					"BF": Burkina Faso; "CI": Côte d'Ivoire
 <site>: 		Consists of <location abbreviation>:
