@@ -180,15 +180,15 @@ rects <- create_vip_rects(df_vip_pls[df_vip_pls$model == "PLSR C", ])
 library("ggrepel")
 
 # Plot mean replicate spectra --------------------------------------------------
-p_spc <- ggplot2::ggplot(dts_long[["spc"]], 
-    ggplot2::aes(x = wavenumber, y = value)) +
-  ggplot2::geom_rect(data = rects, inherit.aes = FALSE,
-    ggplot2::aes(xmin = start, xmax = end, ymin = min(dts_long[["spc"]]$value),
+p_spc <- ggplot(dts_long[["spc"]], 
+    aes(x = wavenumber, y = value)) +
+  geom_rect(data = rects, inherit.aes = FALSE,
+    aes(xmin = start, xmax = end, ymin = min(dts_long[["spc"]]$value),
       ymax = max(dts_long[["spc"]]$value), group = group), 
       color = "transparent",
       fill = "orange", alpha = 0.3) +
-  ggplot2::geom_line(data = dts_long[["spc"]], inherit.aes = FALSE,
-    ggplot2::aes(x = wavenumber, y = value, group = group_id),
+  geom_line(data = dts_long[["spc"]], inherit.aes = FALSE,
+    aes(x = wavenumber, y = value, group = group_id),
       alpha = alpha, size = 0.2) +
   geom_vline(data = df_peak, aes(xintercept = wavenumber), color = "#e41a1c",
     linetype = "dotted", size = 0.4, alpha = 0.6) +
@@ -196,53 +196,53 @@ p_spc <- ggplot2::ggplot(dts_long[["spc"]],
     label = annotation_const), size = 2, angle = 90, col = "#e41a1c", 
     fontface = "bold", arrow = arrow(length = unit(0.02, "npc")),
     direction = "both", fill = "white", nudge_y = 0.45) +
-  ggplot2::scale_x_reverse(limits = x_lim, breaks = brk) +
-  ggplot2::ylim(c(0, 2.2)) +
-  ggplot2::labs(x = xlab, y = ylab1) +
-  ggplot2::theme_bw() +
-  ggplot2::theme(plot.margin = ggplot2::unit(c(1, 5, -30, 6),
-    units = "points"), axis.text.x = ggplot2::element_blank())
+  scale_x_reverse(limits = x_lim, breaks = brk) +
+  ylim(c(0, 2.2)) +
+  labs(x = xlab, y = ylab1) +
+  theme_bw() +
+  theme(plot.margin = unit(c(1, 5, -30, 6),
+    units = "points"), axis.text.x = element_blank())
 
 # Plot preprocessed spectra --------------------------------------------------
-p_spc_pre <- ggplot2::ggplot(dts_long[["spc_pre"]],
-    ggplot2::aes(wavenumber, value)) +
-  ggplot2::geom_rect(data = rects, inherit.aes = FALSE,
-    ggplot2::aes(xmin = start,
+p_spc_pre <- ggplot(dts_long[["spc_pre"]],
+    aes(wavenumber, value)) +
+  geom_rect(data = rects, inherit.aes = FALSE,
+    aes(xmin = start,
       xmax = end, ymin = min(dts_long[["spc_pre"]]$value),
       ymax = max(dts_long[["spc_pre"]]$value), group = group),
       color = "transparent",
       fill = "orange", alpha = 0.3) +
-  ggplot2::geom_line(ggplot2::aes(group = group_id),
+  geom_line(aes(group = group_id),
     alpha = alpha, size = 0.2) +
-  ggplot2::labs(x = xlab, y = ylab2) +
-  ggplot2::theme_bw() +
-  ggplot2::theme(plot.margin = ggplot2::unit(c(0, 5, 1, 1),
+  labs(x = xlab, y = ylab2) +
+  theme_bw() +
+  theme(plot.margin = unit(c(0, 5, 1, 1),
     units = "points")) +
-  ggplot2::scale_x_reverse(limits = x_lim, breaks = brk) +
-  ggplot2::theme(plot.margin = ggplot2::unit(c(1, 5, -30, 6),
+  scale_x_reverse(limits = x_lim, breaks = brk) +
+  theme(plot.margin = unit(c(1, 5, -30, 6),
     units = "points"),
-    axis.title.y = ggplot2::element_text(vjust = 0.25),
-    axis.text.x = ggplot2::element_blank())
+    axis.title.y = element_text(vjust = 0.25),
+    axis.text.x = element_blank())
 
 # Plot VIP ---------------------------------------------------------------------
-p_vip <- ggplot2::ggplot(data = df_vip_pls,
-    ggplot2::aes(x = wavenumber, y = vip)) +
-  ggplot2::geom_rect(data = rects, inherit.aes = FALSE,
-    ggplot2::aes(xmin = start, xmax = end, ymin = min(df_vip_pls$vip),
+p_vip <- ggplot(data = df_vip_pls,
+    aes(x = wavenumber, y = vip)) +
+  geom_rect(data = rects, inherit.aes = FALSE,
+    aes(xmin = start, xmax = end, ymin = min(df_vip_pls$vip),
     ymax = max(df_vip_pls$vip), group = group), color = "transparent",
     fill = "orange", alpha = 0.3) +
-  ggplot2::geom_hline(yintercept = 1, colour = "black") +
-  ggplot2::geom_line(aes(colour = model), size = 0.55) +
-  ggplot2::geom_point(aes(x = wavenumber, y = coef_bigger0),
+  geom_hline(yintercept = 1, colour = "black") +
+  geom_line(aes(colour = model), size = 0.55) +
+  geom_point(aes(x = wavenumber, y = coef_bigger0),
     alpha = 1/5, size = 0.7, colour = "black", shape = 124) +
-  ggplot2::xlab(xlab) +
-  ggplot2::ylab("VIP") +
-  ggplot2::scale_x_reverse(limits = x_lim, breaks = brk) +
-  ggplot2::theme_bw() +
-  ggplot2::theme(plot.margin = ggplot2::unit(c(0, 5, 1, 1),
-    units = "points"), axis.title.y = ggplot2::element_text(vjust = 0.25),
+  xlab(xlab) +
+  ylab("VIP") +
+  scale_x_reverse(limits = x_lim, breaks = brk) +
+  theme_bw() +
+  theme(plot.margin = unit(c(0, 5, 1, 1),
+    units = "points"), axis.title.y = element_text(vjust = 0.25),
     legend.position = "bottom") +
-  ggplot2::guides(colour = guide_legend(title = "Model/soil attribute"))
+  guides(colour = guide_legend(title = "Model/soil attribute"))
 
 # Arrange plots in panels without margins --------------------------------------
 # No margins in between
