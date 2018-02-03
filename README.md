@@ -5,6 +5,8 @@ reference models and the manuscript for the soil spectral library that was
 created in order to assess soil-fertility related properties in four landscapes
 across the West African yam belt.
 
+All analyses in this project were conducted within the R software environment for statistical computing, R version 3.4.2 (2017-09-28). 
+
 The spectroscopic model library presented in this manuscript builds upon the [`simplerspec`](https://github.com/philipp-baumann/simplerspec) R package, a framework that aims to
 streamline data processing and modeling for infrared diffuse reflectance spectroscopy applications.
 
