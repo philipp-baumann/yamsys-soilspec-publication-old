@@ -5,7 +5,7 @@ reference models and the manuscript for the soil spectral library that was
 created in order to assess soil-fertility related properties in four landscapes
 across the West African yam belt.
 
-This manuscript builds upon the [`simplerspec`](https://github.com/philipp-baumann/simplerspec) R package, a framework that aims to
+The spectroscopic model library presented in this manuscript builds upon the [`simplerspec`](https://github.com/philipp-baumann/simplerspec) R package, a framework that aims to
 streamline data processing and modeling for infrared diffuse reflectance spectroscopy applications.
 
 
@@ -46,9 +46,9 @@ project main directory:
 | -------- | -------------------- | --------------------------------------- |
 | `./` | `...` | Project root directory |
 | `./` | `10_aggregate-ref-data.R` | Aggregate chemical reference analysis data prior to developing spectroscopic reference models for the YAMSYS pilot landscapes. |
-| `./` | `11_summarize-ref-data.R` | Summarize chemical reference analysis data by boxplots by soil property and landscape. |
+| `./` | `11_summarize-ref-data.R` | Summarize chemical reference analysis data using boxplots by soil property and landscape. |
 | `./` | `12_create-sampling-maps.R` | Create geographical maps that depict positions of sampled fields within the four pilot landscapes.
-| `./` | `20_build-spectroscopy-models.R`| Build spectroscopic reference models covering sampled fields within the four YAMSYS pilot landscapes. Tune PLS regression models using repeated ten-fold cross-validation, and derive final models at optimal number of components, one for each soil property. |
+| `./` | `20_build-spectroscopy-models.R`| Build spectroscopic reference models covering sampled fields within the four YAMSYS pilot landscapes. Tune PLS regression models using repeated ten-fold cross-validation, and derive final models at optimal number of components, develp one final model for each soil property. |
 | `./` |  `21_evaluate-accurate-models.R` | Make model evaluation summary (predicted vs. observed) plots for most accurate models with RPD higher than 2 (R-squared higher than 0.75). |
 | `./` |  `22_interpret-spc-models-vip.R` | Compute and plot Variable Importance in the Projection (VIP) scores of PLS regression models for total soil C, total N and clay content, including overlaid raw and preprocessed spectra. |
 | `./data/` | ... | Contains all input data required for data transformation, analysis and modeling within the R environment for statistical computing. |
