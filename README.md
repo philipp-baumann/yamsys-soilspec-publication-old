@@ -1,13 +1,16 @@
 # Overview
 
-This repository contains all necessary data, metadata, code and text to reproduce the 
-reference models and the manuscript for the soil spectral library that was 
-created in order to assess soil-fertility related properties in four landscapes
-across the West African yam belt.
+This repository contains all reference soil analysis and spectral data data,
+metadata, code and text to reproduce the reference models and the manuscript for
+the soil spectral library that was created in order to predict soil-fertility
+related properties in four landscapes across the West African yam belt. Two of
+the sampled landscapes, covering 20 fields within an area of about 10 times 10
+square kilometers each, are in Côte d'Ivoire, named "Liliyo" and  "Tieningboué",
+and two in Burkina Faso, named "Midebdo" and "Léo".
 
-All analyses in this project were conducted within the [R software environment for statistical computing](https://www.r-project.org), R version 3.4.2 (2017-09-28). 
+All analyses in this project were conducted within the [R software environment for statistical computing](https://www.r-project.org), R version 3.4.2 (2017-09-28).
 
-The spectroscopic model library presented in this manuscript builds upon the [`simplerspec`](https://github.com/philipp-baumann/simplerspec) R package, a framework that aims to
+The spectroscopic model library presented in this manuscript is built upon the [`simplerspec`](https://github.com/philipp-baumann/simplerspec) R package, a framework that aims to
 streamline data processing and modeling for infrared diffuse reflectance spectroscopy applications.
 
 
@@ -41,7 +44,7 @@ the manuscript including table and figure outputs.
 └── yamsys-soilspec-publication.Rproj
 ```
 
-Here is a short description of key files contained in sub-folders of the 
+Here is a short description of key files contained in sub-folders of the
 project main directory:
 
 | Folder path | File | Description |
@@ -87,7 +90,7 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] forcats_0.2.0     stringr_1.2.0     dplyr_0.7.4       purrr_0.2.4      
+ [1] forcats_0.2.0     stringr_1.2.0     dplyr_0.7.4       purrr_0.2.4      
  [5] readr_1.1.1       tidyr_0.7.2       tibble_1.3.4      ggplot2_2.2.1    
  [9] tidyverse_1.2.1   simplerspec_0.1.0 foreach_1.4.4    
 
@@ -107,3 +110,5 @@ loaded via a namespace (and not attached):
 [49] munsell_0.4.3       broom_0.4.3         crayon_1.3.4   
 ```
 
+```
+`
