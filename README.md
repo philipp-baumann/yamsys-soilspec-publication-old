@@ -21,7 +21,7 @@ the manuscript including table and figure outputs.
 
 ```
 .
-├── 10_aggregate-ref-data.R
+├── 10_compile-ref-data.R
 ├── 11_summarize-ref-data.R
 ├── 12_create-sampling-maps.R
 ├── 20_build-spc-models.R
