@@ -55,7 +55,7 @@ project main directory:
 | `./` | [`20_build-spc-models.R`](20_build-spc-models.R) | Build spectroscopic reference models covering sampled fields within the four YAMSYS pilot landscapes. Tune PLS regression models using 5 times repeated 10-fold cross-validation, and derive final models at optimal number of components, develop one final model for each soil property. |
 | `./` |  [`21_evaluate-spc-models-graphically.R`](21_evaluate-spc-models-graphically.R) | Make model evaluation summary (predicted vs. observed) plots for models with RPD higher than 2 (R-squared higher than 0.75). |
 | `./` |  [`22_interpret-spc-models-vip.R`](22_interpret-spc-models-vip.R) | Compute and plot Variable Importance in the Projection (VIP) scores of PLS regression models for total soil C, total N and clay content, including overlaid raw and preprocessed spectra. |
-| `./data/` | ... | Contains all input data required for data transformation, analysis and modeling within the R environment for statistical computing. |
+| [`./data/`](data) | ... | Contains all input data required for data transformation, analysis and modeling within the R environment for statistical computing. |
 | `./data/metadata-field/` | `metadata-field-yamsys.csv` | Contains metadata about sampled yam fields as `.csv` text file. |
 | `./data/soilchem/` | `metadata_soilchem_yamsys.txt` | Metadata about the laboratory reference data set in `./data/soilchem/soilchem_yamsys.csv`. Description of column names in header (IDs, covariates and soil properties) and details about the laboratory reference analyses. Simple text file.
 | `./data/soilchem/` | `soilchem_yamsys.csv` | Soil chemical reference data set as `.csv` text file.
