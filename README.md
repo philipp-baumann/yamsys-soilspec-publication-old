@@ -4,12 +4,12 @@ This repository contains all reference soil chemical and spectral data, metadata
 calibration models and the manuscript for the soil spectral library that was 
 created in order to assess soil-fertility related properties in four landscapes
 across the West African yam belt.  Two of
-the sampled landscapes, covering 20 fields within an area of about 10 times 10 square kilometers each, are in Cote d'Ivoire, named Liliyo and
+the sampled landscapes, covering 20 fields within an area of about 10 times 10 square kilometers each, are in Côte d'Ivoire, named Liliyo and
 Tieningboué, and two in Burkina Faso, named Midebdo and Léo.
 
 All analyses in this project were conducted within the [R software environment for statistical computing](https://www.r-project.org), R version 3.4.2 (2017-09-28). 
 
-The spectroscopic model library presented in this manuscript builds upon the [`simplerspec`](https://github.com/philipp-baumann/simplerspec) R package, a framework that aims to
+The spectroscopic model library presented in this manuscript is built upon the [`simplerspec`](https://github.com/philipp-baumann/simplerspec) R package, a framework that aims to
 streamline data processing and modeling for infrared diffuse reflectance spectroscopy applications.
 
 
