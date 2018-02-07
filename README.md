@@ -25,7 +25,7 @@ the manuscript including table and figure outputs.
 ├── 11_summarize-ref-data.R
 ├── 12_create-sampling-maps.R
 ├── 20_build-spc-models.R
-├── 21_evaluate-accurate-models.R
+├── 21_evaluate-spc-models-graphically.R
 ├── 22_interpret-spc-models-vip.R
 ├── LICENSE
 ├── README.md
