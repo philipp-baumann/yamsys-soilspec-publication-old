@@ -52,8 +52,8 @@ project main directory:
 | `./` | `10_aggregate-ref-data.R` | Aggregate chemical reference analysis data prior to developing spectroscopic reference models for the YAMSYS pilot landscapes. |
 | `./` | `11_summarize-ref-data.R` | Summarize chemical reference analysis data using boxplots by soil property and landscape. |
 | `./` | `12_create-sampling-maps.R` | Create geographical maps that depict positions of sampled fields within the four pilot landscapes.
-| `./` | `20_build-spectroscopy-models.R`| Build spectroscopic reference models covering sampled fields within the four YAMSYS pilot landscapes. Tune PLS regression models using 5 times repeated 10-fold cross-validation, and select the optimal number of components, develop one final model for each soil property. |
-| `./` |  `21_evaluate-accurate-models.R` | Make model evaluation summary (predicted vs. observed) plots for models with RPD higher than 2 (R-squared higher than 0.75). |
+| `./` | `20_build-spectroscopy-models.R`| Build spectroscopic reference models covering sampled fields within the four YAMSYS pilot landscapes. Tune PLS regression models using repeated ten-fold cross-validation, and derive final models at optimal number of components, develop one final model for each soil property. |
+| `./` |  `21_evaluate-accurate-models.R` | Make model evaluation summary (predicted vs. observed) plots for most accurate models with RPD higher than 2 (R-squared higher than 0.75). |
 | `./` |  `22_interpret-spc-models-vip.R` | Compute and plot Variable Importance in the Projection (VIP) scores of PLS regression models for total soil C, total N and clay content, including overlaid raw and preprocessed spectra. |
 | `./data/` | ... | Contains all input data required for data transformation, analysis and modeling within the R environment for statistical computing. |
 | `./data/metadata-field/` | `metadata-field-yamsys.csv` | Contains metadata about sampled yam fields as `.csv` text file. |
@@ -109,4 +109,3 @@ loaded via a namespace (and not attached):
 [49] munsell_0.4.3       broom_0.4.3         crayon_1.3.4   
 ```
 
-                          
