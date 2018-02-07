@@ -3,7 +3,7 @@
 This repository contains all reference soil chemical and spectral data, metadata, code and text to reproduce the 
 calibration models and the manuscript for the soil spectral library that was 
 created in order to assess soil-fertility related properties in four landscapes
-across the West African yam belt. The study was conducted within the [YAMSYS project](www.yamsys.org), and aimed to deliver a spectroscopy library that allows to cost-effectively evaluate current soil status and effects of innovative agronomic yam practices on key soil properties. Two of
+across the West African yam belt. The study related to this repository was conducted within the [YAMSYS project](www.yamsys.org), and aimed to deliver a spectroscopy library that allows to cost-effectively evaluate current soil status and effects of innovative agronomic yam practices on key soil properties. Two of
 the sampled landscapes, covering 20 fields within an area of about 10 times 10 square kilometers each, are in Côte d'Ivoire, named Liliyo and
 Tieningboué, and two in Burkina Faso, named Midebdo and Léo.
 
