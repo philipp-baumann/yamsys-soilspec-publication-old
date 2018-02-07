@@ -49,7 +49,7 @@ project main directory:
 | Folder path | File | Description |
 | -------- | -------------------- | --------------------------------------- |
 | `./` | `...` | Project root directory |
-| `./` | `10_aggregate-ref-data.R` | Aggregate chemical reference analysis data prior to developing spectroscopic reference models for the YAMSYS pilot landscapes. |
+| `./` | `10_compile-ref-data.R` | Compile chemical reference analysis data prior to developing spectroscopic reference models for the YAMSYS pilot landscapes. |
 | `./` | `11_summarize-ref-data.R` | Summarize chemical reference analysis data using boxplots by soil property and landscape. |
 | `./` | `12_create-sampling-maps.R` | Create geographical maps that depict positions of sampled fields within the four pilot landscapes.
 | `./` | `20_build-spectroscopy-models.R`| Build spectroscopic reference models covering sampled fields within the four YAMSYS pilot landscapes. Tune PLS regression models using 5 times repeated 10-fold cross-validation, and derive final models at optimal number of components, develop one final model for each soil property. |
