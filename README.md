@@ -21,11 +21,11 @@ the manuscript including table and figure outputs.
 
 ```
 .
-├── 10_aggregate-ref-data.R
+├── 10_compile-ref-data.R
 ├── 11_summarize-ref-data.R
 ├── 12_create-sampling-maps.R
-├── 20_build-spectroscopy-models.R
-├── 21_evaluate-accurate-models.R
+├── 20_build-spc-models.R
+├── 21_evaluate-spc-models-graphically.R
 ├── 22_interpret-spc-models-vip.R
 ├── LICENSE
 ├── README.md
@@ -109,3 +109,4 @@ loaded via a namespace (and not attached):
 [49] munsell_0.4.3       broom_0.4.3         crayon_1.3.4   
 ```
 
+  
