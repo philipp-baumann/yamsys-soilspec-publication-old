@@ -1,7 +1,7 @@
 # Overview
 
 This repository contains all reference soil chemical and spectral data, metadata, code and text to reproduce the 
-reference models and the manuscript for the soil spectral library that was 
+calibration models and the manuscript for the soil spectral library that was 
 created in order to assess soil-fertility related properties in four landscapes
 across the West African yam belt.
 
