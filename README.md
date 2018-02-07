@@ -107,6 +107,3 @@ loaded via a namespace (and not attached):
 [45] mnormt_1.5-5        colorspace_1.3-2    stringi_1.1.6       lazyeval_0.2.1     
 [49] munsell_0.4.3       broom_0.4.3         crayon_1.3.4   
 ```
-
-```
-`
