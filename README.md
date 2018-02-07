@@ -6,7 +6,7 @@ the soil spectral library that was created in order to predict soil-fertility
 related properties in four landscapes across the West African yam belt. Two of
 the sampled landscapes, covering 20 fields within an area of about 10 times 10
 square kilometers each, are in Côte d'Ivoire, named Liliyo and
-Tieningboué, and two in Burkina Faso, named Midebdo` and Léo.
+Tieningboué, and two in Burkina Faso, named Midebdo and Léo.
 
 All analyses in this project were conducted within the [R software environment for statistical computing](https://www.r-project.org), R version 3.4.2 (2017-09-28).
 
