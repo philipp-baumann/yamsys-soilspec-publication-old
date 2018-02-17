@@ -1,5 +1,7 @@
 # Overview
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1174869.svg)](https://doi.org/10.5281/zenodo.1174869)
+
 This repository contains all reference soil chemical and spectral data, metadata, code and text to reproduce the 
 calibration models and the manuscript for the soil spectral library that was 
 created in order to assess soil-fertility related properties in four landscapes
