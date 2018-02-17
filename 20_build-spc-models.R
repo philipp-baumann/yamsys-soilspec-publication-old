@@ -532,3 +532,7 @@ object.size(models_train)
 
 # Save train list as Rds
 saveRDS(models_train, "models/rep-kfold-cv-caret/pls-models-train-list.Rds")
+
+# Read list of trained models
+# models_train <- readRDS(
+#  file =  "models/rep-kfold-cv-caret/pls-models-train-list.Rds")
