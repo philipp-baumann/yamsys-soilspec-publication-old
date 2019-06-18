@@ -55,7 +55,8 @@ spc_tbl <- spc_list %>%
   gather_spc() %>% 
   resample_spc(wn_lower = 500, wn_upper = 3996, wn_interval = 2) %>%
   average_spc() %>%
-  preprocess_spc(select = "sg_1_w21")
+  preprocess_spc(select = "sg_1_w21") %>%
+  select_spc_vars(every = 4)
 
 ## Read chemical reference data and join with spectral data ====================
 
