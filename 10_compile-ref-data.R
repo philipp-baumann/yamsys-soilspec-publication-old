@@ -9,7 +9,8 @@
 ################################################################################
 
 # Load packages
-library("tidyverse")
+pkgs <- c("tidyverse", "here")
+lapply(pkgs, library, character.only = TRUE)
 
 ## (01) Read and transform pH data =============================================
 
