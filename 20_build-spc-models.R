@@ -423,14 +423,14 @@ pls_silt <- fit_pls(
 ## total Mn
 ## =============================================================================
 
-saveRDS(pls_Fe_total, "models/rep-kfold-cv-simplerspec/pls_Fe_total.Rds")
-saveRDS(pls_Si_total, "models/rep-kfold-cv-simplerspec/pls_Si_total.Rds")
-saveRDS(pls_Al_total, "models/rep-kfold-cv-simplerspec/pls_Al_total.Rds")
-saveRDS(pls_K_total, "models/rep-kfold-cv-simplerspec/pls_K_total.Rds")
-saveRDS(pls_Ca_total, "models/rep-kfold-cv-simplerspec/pls_Ca_total.Rds")
-saveRDS(pls_Zn_total, "models/rep-kfold-cv-simplerspec/pls_Zn_total.Rds")
-saveRDS(pls_Cu_total, "models/rep-kfold-cv-simplerspec/pls_Cu_total.Rds")
-saveRDS(pls_Mn_total, "models/rep-kfold-cv-simplerspec/pls_Mn_total.Rds")
+saveRDS(pls_Fe_total, "models/rep-kfold-cv/pls_Fe_total.Rds")
+saveRDS(pls_Si_total, "models/rep-kfold-cv/pls_Si_total.Rds")
+saveRDS(pls_Al_total, "models/rep-kfold-cv/pls_Al_total.Rds")
+saveRDS(pls_K_total, "models/rep-kfold-cv/pls_K_total.Rds")
+saveRDS(pls_Ca_total, "models/rep-kfold-cv/pls_Ca_total.Rds")
+saveRDS(pls_Zn_total, "models/rep-kfold-cv/pls_Zn_total.Rds")
+saveRDS(pls_Cu_total, "models/rep-kfold-cv/pls_Cu_total.Rds")
+saveRDS(pls_Mn_total, "models/rep-kfold-cv/pls_Mn_total.Rds")
 
 ## =============================================================================
 ## 2: Soil properties in the group related to
@@ -439,13 +439,13 @@ saveRDS(pls_Mn_total, "models/rep-kfold-cv-simplerspec/pls_Mn_total.Rds")
 ## exchangeable Al, CEC, base saturation
 ## =============================================================================
 
-saveRDS(pls_pH, "models/rep-kfold-cv-simplerspec/pls_pH.Rds")
-saveRDS(pls_exch_K, "models/rep-kfold-cv-simplerspec/pls_exch_K.Rds")
-saveRDS(pls_exch_Ca, "models/rep-kfold-cv-simplerspec/pls_exch_Ca.Rds")
-saveRDS(pls_exch_Mg, "models/rep-kfold-cv-simplerspec/pls_exch_Mg.Rds")
-saveRDS(pls_exch_Al, "models/rep-kfold-cv-simplerspec/pls_exch_Al.Rds")
-saveRDS(pls_CEC, "models/rep-kfold-cv-simplerspec/pls_CEC.Rds")
-saveRDS(pls_BS, "models/rep-kfold-cv-simplerspec/pls_BS.Rds")
+saveRDS(pls_pH, "models/rep-kfold-cv/pls_pH.Rds")
+saveRDS(pls_exch_K, "models/rep-kfold-cv/pls_exch_K.Rds")
+saveRDS(pls_exch_Ca, "models/rep-kfold-cv/pls_exch_Ca.Rds")
+saveRDS(pls_exch_Mg, "models/rep-kfold-cv/pls_exch_Mg.Rds")
+saveRDS(pls_exch_Al, "models/rep-kfold-cv/pls_exch_Al.Rds")
+saveRDS(pls_CEC, "models/rep-kfold-cv/pls_CEC.Rds")
+saveRDS(pls_BS, "models/rep-kfold-cv/pls_BS.Rds")
 
 ## =============================================================================
 ## 3: Soil properties in the group related to
@@ -453,10 +453,10 @@ saveRDS(pls_BS, "models/rep-kfold-cv-simplerspec/pls_BS.Rds")
 ## Total C, total N, total S, total P
 ## =============================================================================
 
-saveRDS(pls_N, "models/rep-kfold-cv-simplerspec/pls_N.Rds")
-saveRDS(pls_C, "models/rep-kfold-cv-simplerspec/pls_C.Rds")
-saveRDS(pls_S, "models/rep-kfold-cv-simplerspec/pls_S.Rds")
-saveRDS(pls_P, "models/rep-kfold-cv-simplerspec/pls_P.Rds")
+saveRDS(pls_N, "models/rep-kfold-cv/pls_N.Rds")
+saveRDS(pls_C, "models/rep-kfold-cv/pls_C.Rds")
+saveRDS(pls_S, "models/rep-kfold-cv/pls_S.Rds")
+saveRDS(pls_P, "models/rep-kfold-cv/pls_P.Rds")
 
 ## =============================================================================
 ## 4: Soil properties in the group related to
@@ -464,22 +464,22 @@ saveRDS(pls_P, "models/rep-kfold-cv-simplerspec/pls_P.Rds")
 ## Resin extractable P, DTPA Fe, DTPA Zn, DTPA Cu, DTPA Mn
 ## =============================================================================
 
-saveRDS(pls_resin_P_log, "models/rep-kfold-cv-simplerspec/pls_resin_P_log.Rds")
-saveRDS(pls_Fe_DTPA_log, "models/rep-kfold-cv-simplerspec/pls_Fe_DTPA_log.Rds")
-saveRDS(pls_Zn_DTPA, "models/rep-kfold-cv-simplerspec/pls_Zn_DTPA.Rds")
-saveRDS(pls_Cu_DTPA, "models/rep-kfold-cv-simplerspec/pls_Cu_DTPA.Rds")
-saveRDS(pls_Mn_DTPA, "models/rep-kfold-cv-simplerspec/pls_Mn_DTPA.Rds")
+saveRDS(pls_resin_P_log, "models/rep-kfold-cv/pls_resin_P_log.Rds")
+saveRDS(pls_Fe_DTPA_log, "models/rep-kfold-cv/pls_Fe_DTPA_log.Rds")
+saveRDS(pls_Zn_DTPA, "models/rep-kfold-cv/pls_Zn_DTPA.Rds")
+saveRDS(pls_Cu_DTPA, "models/rep-kfold-cv/pls_Cu_DTPA.Rds")
+saveRDS(pls_Mn_DTPA, "models/rep-kfold-cv/pls_Mn_DTPA.Rds")
 
 ## =============================================================================
 ## 5: Texture: Sand, clay, and silt percentage
 ## =============================================================================
 
-saveRDS(pls_sand, "models/rep-kfold-cv-simplerspec/pls_sand.Rds")
-saveRDS(pls_silt, "models/rep-kfold-cv-simplerspec/pls_silt.Rds")
-saveRDS(pls_clay, "models/rep-kfold-cv-simplerspec/pls_clay.Rds")
+saveRDS(pls_sand, "models/rep-kfold-cv/pls_sand.Rds")
+saveRDS(pls_silt, "models/rep-kfold-cv/pls_silt.Rds")
+saveRDS(pls_clay, "models/rep-kfold-cv/pls_clay.Rds")
 
 # Check if models have been written
-dir("models/rep-kfold-cv-simplerspec")
+dir("models/rep-kfold-cv")
 
 # Check model sizes ($model is an object of class "train" (list))
 object.size(pls_resin_P_log$model)
