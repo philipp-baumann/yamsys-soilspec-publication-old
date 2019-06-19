@@ -75,39 +75,127 @@ Below is the R `sessionInfo()` output after loading required packages ([tidyvers
 This was the computational environment based on which the analysis of this project was conduced and reported accordingly in the manuscript.
 
 ```
-\> sessionInfo()
-R version 3.4.2 (2017-09-28)
-Platform: x86_64-apple-darwin15.6.0 (64-bit)
-Running under: OS X El Capitan 10.11.6
+\> sessioninfo::session_info()
+─ Session info ──────────────────────────────────────────────────────────────────────────────────────────────
+ setting  value                       
+ version  R version 3.6.0 (2019-04-26)
+ os       Ubuntu 18.04.2 LTS          
+ system   x86_64, linux-gnu           
+ ui       RStudio                     
+ language (EN)                        
+ collate  en_US.UTF-8                 
+ ctype    en_US.UTF-8                 
+ tz       Europe/Zurich               
+ date     2019-06-19                  
 
-Matrix products: default
-BLAS: /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib
-LAPACK: /Library/Frameworks/R.framework/Versions/3.4/Resources/lib/libRlapack.dylib
+─ Packages ──────────────────────────────────────────────────────────────────────────────────────────────────
+ ! package           * version    date       lib source                                      
+ P assertthat          0.2.1      2019-03-21 [?] CRAN (R 3.6.0)                              
+   backports           1.1.4      2019-04-10 [1] CRAN (R 3.6.0)                              
+   bismer              0.1.1      2019-06-17 [1] Github (hrbrmstr/bismer@d585fa2)            
+   broom               0.5.2      2019-04-07 [1] CRAN (R 3.6.0)                              
+   callr               3.2.0      2019-03-15 [1] CRAN (R 3.6.0)                              
+   caret               6.0-84     2019-04-27 [1] CRAN (R 3.6.0)                              
+   cellranger          1.1.0      2016-07-27 [1] CRAN (R 3.6.0)                              
+   ChemometricsWithR * 0.1.13     2019-01-07 [1] CRAN (R 3.6.0)                              
+   class               7.3-15     2019-01-01 [4] CRAN (R 3.5.2)                              
+ P cli                 1.1.0      2019-03-19 [?] CRAN (R 3.6.0)                              
+   codetools           0.2-16     2018-12-24 [4] CRAN (R 3.5.2)                              
+   colorspace          1.4-1      2019-03-18 [1] CRAN (R 3.6.0)                              
+   cowplot             0.9.4      2019-01-08 [1] CRAN (R 3.6.0)                              
+ P crayon              1.3.4      2017-09-16 [?] CRAN (R 3.6.0)                              
+ P curl                3.3        2019-01-10 [?] CRAN (R 3.6.0)                              
+   data.table        * 1.12.2     2019-04-07 [1] CRAN (R 3.6.0)                              
+   desc                1.2.0      2018-05-01 [1] CRAN (R 3.6.0)                              
+   devtools            2.0.2      2019-04-08 [1] CRAN (R 3.6.0)                              
+   digest              0.6.19     2019-05-20 [1] CRAN (R 3.6.0)                              
+   dplyr             * 0.8.1      2019-05-14 [1] CRAN (R 3.6.0)                              
+   e1071               1.7-2      2019-06-05 [1] CRAN (R 3.6.0)                              
+   evaluate            0.14       2019-05-28 [1] CRAN (R 3.6.0)                              
+ P fansi               0.4.0      2018-10-05 [?] CRAN (R 3.6.0)                              
+   forcats           * 0.4.0      2019-02-17 [1] CRAN (R 3.6.0)                              
+   foreach           * 1.4.4      2017-12-12 [1] CRAN (R 3.6.0)                              
+   fs                  1.3.1      2019-05-06 [1] CRAN (R 3.6.0)                              
+   generics            0.0.2      2018-11-29 [1] CRAN (R 3.6.0)                              
+   ggplot2           * 3.2.0      2019-06-16 [1] CRAN (R 3.6.0)                              
+   ggrepel           * 0.8.1      2019-05-07 [1] CRAN (R 3.6.0)                              
+ P glue                1.3.1      2019-03-12 [?] CRAN (R 3.6.0)                              
+   gower               0.2.1      2019-05-14 [1] CRAN (R 3.6.0)                              
+   gtable              0.3.0      2019-03-25 [1] CRAN (R 3.6.0)                              
+   haven               2.1.0      2019-02-19 [1] CRAN (R 3.6.0)                              
+   here              * 0.1        2017-05-28 [1] CRAN (R 3.6.0)                              
+ P hms                 0.4.2      2018-03-10 [?] CRAN (R 3.6.0)                              
+   htmltools           0.3.6      2017-04-28 [1] CRAN (R 3.6.0)                              
+   httr                1.4.0      2018-12-11 [1] CRAN (R 3.6.0)                              
+   ipred               0.9-9      2019-04-28 [1] CRAN (R 3.6.0)                              
+   iterators           1.0.10     2018-07-13 [1] CRAN (R 3.6.0)                              
+ P jsonlite            1.6        2018-12-07 [?] CRAN (R 3.6.0)                              
+   knitr               1.23       2019-05-18 [1] CRAN (R 3.6.0)                              
+   kohonen             3.0.8      2018-12-17 [1] CRAN (R 3.6.0)                              
+   labeling            0.3        2014-08-23 [1] CRAN (R 3.6.0)                              
+   lattice             0.20-38    2018-11-04 [4] CRAN (R 3.5.1)                              
+   lava                1.6.5      2019-02-12 [1] CRAN (R 3.6.0)                              
+   lazyeval            0.2.2      2019-03-15 [1] CRAN (R 3.6.0)                              
+   lubridate           1.7.4      2018-04-11 [1] CRAN (R 3.6.0)                              
+ P magrittr            1.5        2014-11-22 [?] CRAN (R 3.6.0)                              
+   MASS                7.3-51.1   2018-11-01 [4] CRAN (R 3.5.1)                              
+   Matrix              1.2-17     2019-03-22 [4] CRAN (R 3.5.3)                              
+   memoise             1.1.0      2017-04-21 [1] CRAN (R 3.6.0)                              
+   ModelMetrics        1.2.2      2018-11-03 [1] CRAN (R 3.6.0)                              
+   modelr              0.1.4      2019-02-18 [1] CRAN (R 3.6.0)                              
+   munsell             0.5.0      2018-06-12 [1] CRAN (R 3.6.0)                              
+   nlme                3.1-139    2019-04-09 [4] CRAN (R 3.5.3)                              
+   nnet                7.3-12     2016-02-02 [4] CRAN (R 3.5.0)                              
+   packrat           * 0.5.0      2018-11-14 [1] CRAN (R 3.6.0)                              
+   pillar              1.4.1      2019-05-28 [1] CRAN (R 3.6.0)                              
+   pkgbuild            1.0.3      2019-03-20 [1] CRAN (R 3.6.0)                              
+ P pkgconfig           2.0.2      2018-08-16 [?] CRAN (R 3.6.0)                              
+   pkgload             1.0.2      2018-10-29 [1] CRAN (R 3.6.0)                              
+   pls                 2.7-1      2019-03-23 [1] CRAN (R 3.6.0)                              
+   plyr                1.8.4      2016-06-08 [1] CRAN (R 3.6.0)                              
+   prettyunits         1.0.2      2015-07-13 [1] CRAN (R 3.6.0)                              
+   processx            3.3.1      2019-05-08 [1] CRAN (R 3.6.0)                              
+   prodlim             2018.04.18 2018-04-18 [1] CRAN (R 3.6.0)                              
+   ps                  1.3.0      2018-12-21 [1] CRAN (R 3.6.0)                              
+   purrr             * 0.3.2      2019-03-15 [1] CRAN (R 3.6.0)                              
+ P R6                  2.4.0      2019-02-14 [?] CRAN (R 3.6.0)                              
+   Rcpp                1.0.1      2019-03-17 [1] CRAN (R 3.6.0)                              
+   readr             * 1.3.1      2018-12-21 [1] CRAN (R 3.6.0)                              
+   readxl              1.3.1      2019-03-13 [1] CRAN (R 3.6.0)                              
+   recipes             0.1.5      2019-03-21 [1] CRAN (R 3.6.0)                              
+ P remotes             2.0.4      2019-04-10 [?] CRAN (R 3.6.0)                              
+   reshape2            1.4.3      2017-12-11 [1] CRAN (R 3.6.0)                              
+   rlang               0.3.4      2019-04-07 [1] CRAN (R 3.6.0)                              
+   rmarkdown           1.13       2019-05-22 [1] CRAN (R 3.6.0)                              
+   rpart               4.1-15     2019-04-12 [4] CRAN (R 3.6.0)                              
+   rprojroot           1.3-2      2018-01-03 [1] CRAN (R 3.6.0)                              
+   rstudioapi          0.10       2019-03-19 [1] CRAN (R 3.6.0)                              
+   rvest               0.3.4      2019-05-15 [1] CRAN (R 3.6.0)                              
+   scales              1.0.0      2018-08-09 [1] CRAN (R 3.6.0)                              
+   sessioninfo         1.1.1      2018-11-05 [1] CRAN (R 3.6.0)                              
+   simplerspec       * 0.1.0      2019-06-19 [1] Github (philipp-baumann/simplerspec@fcc7643)
+ P stringi             1.4.3      2019-03-12 [?] CRAN (R 3.6.0)                              
+ P stringr           * 1.4.0      2019-02-10 [?] CRAN (R 3.6.0)                              
+   survival            2.43-3     2018-11-26 [4] CRAN (R 3.5.1)                              
+   testthat            2.1.1      2019-04-23 [1] CRAN (R 3.6.0)                              
+   tibble            * 2.1.3      2019-06-06 [1] CRAN (R 3.6.0)                              
+   tidyr             * 0.8.3      2019-03-01 [1] CRAN (R 3.6.0)                              
+   tidyselect          0.2.5      2018-10-11 [1] CRAN (R 3.6.0)                              
+   tidyverse         * 1.2.1      2017-11-14 [1] CRAN (R 3.6.0)                              
+   timeDate            3043.102   2018-02-21 [1] CRAN (R 3.6.0)                              
+   usethis             1.5.0      2019-04-07 [1] CRAN (R 3.6.0)                              
+ P utf8                1.1.4      2018-05-24 [?] CRAN (R 3.6.0)                              
+   vctrs               0.1.0      2018-11-29 [1] CRAN (R 3.6.0)                              
+   withr               2.1.2      2018-03-15 [1] CRAN (R 3.6.0)                              
+   xfun                0.7        2019-05-14 [1] CRAN (R 3.6.0)                              
+   xml2                1.2.0      2018-01-24 [1] CRAN (R 3.6.0)                              
+   zeallot             0.1.0      2018-01-28 [1] CRAN (R 3.6.0)                              
 
-locale:
-[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+[1] /home/baumanph/R/x86_64-pc-linux-gnu-library/3.6
+[2] /usr/local/lib/R/site-library
+[3] /usr/lib/R/site-library
+[4] /usr/lib/R/library
 
-attached base packages:
-[1] stats     graphics  grDevices utils     datasets  methods   base     
-
-other attached packages:
- [1] forcats_0.2.0     stringr_1.2.0     dplyr_0.7.4       purrr_0.2.4      
- [5] readr_1.1.1       tidyr_0.7.2       tibble_1.3.4      ggplot2_2.2.1    
- [9] tidyverse_1.2.1   simplerspec_0.1.0 foreach_1.4.4    
-
-loaded via a namespace (and not attached):
- [1] Rcpp_0.12.14        cellranger_1.1.0    compiler_3.4.2      plyr_1.8.4         
- [5] bindr_0.1           iterators_1.0.9     tools_3.4.2         digest_0.6.12      
- [9] lubridate_1.7.1     jsonlite_1.5        evaluate_0.10.1     nlme_3.1-131       
-[13] gtable_0.2.0        lattice_0.20-35     pkgconfig_2.0.1     rlang_0.1.6        
-[17] psych_1.7.8         cli_1.0.0           rstudioapi_0.7      yaml_2.1.15        
-[21] parallel_3.4.2      haven_1.1.0         bindrcpp_0.2        xml2_1.1.1         
-[25] httr_1.3.1          knitr_1.17          hms_0.4.0           rprojroot_1.2      
-[29] grid_3.4.2          glue_1.2.0          data.table_1.10.4-3 R6_2.2.2           
-[33] readxl_1.0.0        foreign_0.8-69      rmarkdown_1.8       modelr_0.1.1       
-[37] reshape2_1.4.3      magrittr_1.5        scales_0.5.0        backports_1.1.1    
-[41] codetools_0.2-15    htmltools_0.3.6     rvest_0.3.2         assertthat_0.2.0   
-[45] mnormt_1.5-5        colorspace_1.3-2    stringi_1.1.6       lazyeval_0.2.1     
-[49] munsell_0.4.3       broom_0.4.3         crayon_1.3.4   
+ P ── Loaded and on-disk path mismatch.
 ```
 
