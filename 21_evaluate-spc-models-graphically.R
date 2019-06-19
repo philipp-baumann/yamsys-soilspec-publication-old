@@ -10,9 +10,12 @@
 ################################################################################
 
 # Load packages
-pkgs <- c("tidyverse", "simplerspec")
+pkgs <- c("tidyverse", "simplerspec", "here")
 lapply(pkgs, library, character.only = TRUE)
 
+# Model results helpers
+scripts_evaluation <- c(here("R", "utils-model-results.R"))
+walk(scripts_evaluation, source)
 
 ## Collect predicted vs. observed values 
 ## from simplerspec modeling output lists ======================================
@@ -91,34 +94,11 @@ models <- list(
   "pls_Mn_DTPA" = pls_Mn_DTPA
 )
 
-# Cross-validation row selection helper; only extracts model evaluation
-# statistics on held-out samples
-select_cv_rows <- function(df) {
-  df[df$dataType == "Cross-validation", ]
-}
-
-# Function to extract predicted vs. observed from a named simplerspec model
-# output list (multiple models)
-extract_predobs <- function(model_list) {
-  predobs <- map(model_list, ~ .[["predobs"]])
-  predobs_cv <- map(predobs, ~ select_cv_rows(.))
-  predobs_list <- imap(predobs_cv, function(df, nm) {
-    m <- rep(nm, nrow(df)); df$model <- m; tibble::as_tibble(df)})
-  dplyr::bind_rows(predobs_list)
-}
-
 # Extract cross-validated predicted vs. observed values
 predobs_cv <- extract_predobs(model_list = models)
 
-# Extract model evaluation statistics for plot annotations =====================
 
-extract_stats <- function(model_list) {
-  stats <- map(model_list, ~ .[["stats"]])
-  stats_cv <- map(stats, ~ select_cv_rows(.))
-  stats_list <- imap(stats_cv, function(df, nm) {
-    m <- rep(nm, nrow(df)); df$model <- m; tibble::as_tibble(df)})
-   suppressWarnings(dplyr::bind_rows(stats_list))
-}
+# Extract model evaluation statistics for plot annotations =====================
 
 # Extract model evaluation statistics (cross-validation only)
 stats_cv <- extract_stats(model_list = models)
@@ -191,7 +171,6 @@ p_model <- ggplot(data = predobs_cv) +
   geom_point(ggplot2::aes(x = obs, y = pred),
     shape = 1, size = 2, alpha = 1/2, data = predobs_cv) +
   facet_wrap(~ model, scales = "free", ncol = 4, labeller = lbl) +
-  ggplot2::coord_fixed(ratio = 1) +
   geom_text(data = annotation,
     aes(x = Inf, y = -Inf, label = ncomp), size = 3,
     hjust = 1.15, vjust = -4.5, parse = TRUE) + # !!! additional label
