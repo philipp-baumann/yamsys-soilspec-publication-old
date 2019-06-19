@@ -11,16 +11,17 @@
 
 
 # Load packages
-pkgs <- c("tidyverse", "simplerspec")
+pkgs <- c("tidyverse", "data.table", "simplerspec", "here", "ChemometricsWithR",
+  "ggrepel")
 lapply(pkgs, library, character.only = TRUE)
 
 ## Read simplerspec model output ===============================================
 
 # Load selection of final models 
 # (previously tuned by repeated k-fold cross-validation)
-pls_C <- readRDS(file = "models/rep-kfold-cv/pls_C.Rds")
-pls_N <- readRDS(file = "models/rep-kfold-cv/pls_N.Rds")
-pls_clay <- readRDS(file = "models/rep-kfold-cv/pls_clay.Rds")
+pls_C <- readRDS(file = here("models/rep-kfold-cv/pls_C.Rds"))
+pls_N <- readRDS(file = here("models/rep-kfold-cv/pls_N.Rds"))
+pls_clay <- readRDS(file = here("models/rep-kfold-cv/pls_clay.Rds"))
 
 # Create a list of models
 mout_list <- list(
@@ -31,48 +32,6 @@ mout_list <- list(
 
 ## Transform data for plotting =================================================
 
-# Extract VIP from multiple models at final number of components
-# uses extract_pls_vip from simplerspec
-extract_multi_pls_vip <- function(mout_list) {
-  vip_df_list <- lapply(mout_list, simplerspec::extract_pls_vip)
-  name_list <- names(mout_list)
-  nrow_list <- lapply(vip_df_list, nrow)
-  model <- flatten_chr(map2(name_list, nrow_list, function(nm, i) rep(nm, i)))
-  vip_df <- dplyr::bind_rows(vip_df_list)
-  tibble::add_column(vip_df, model = model) 
-}
-
-# Extract PLS regression coefficients from single model at final number of 
-# components
-extract_pls_coef <- function(mout) {
-  final_model <- mout$model$finalModel
-  ncomp <- mout$model$finalModel$ncomp
-  coef <- final_model$coefficients[, , ncomp] # coef is an 3D array
-  wn <- as.numeric(colnames(mout$data$calibration$spc_pre[[1]]))
-  tibble::tibble(
-    wavenumber = wn,
-    coef = coef
-  )
-}
-
-# Extract PLS regression coefficients from multiple models at respective
-# final number of components
-extract_multi_pls_coef <- function(mout_list) {
-  coef_df_list <- lapply(mout_list, extract_pls_coef)
-  name_list <- names(mout_list)
-  nrow_list <- lapply(coef_df_list, nrow)
-  model <- flatten_chr(map2(name_list, nrow_list, function(nm, i) rep(nm, i)))
-  coef_df <- dplyr::bind_rows(coef_df_list)
-  tibble::add_column(coef_df, model = model)
-}
-
-# Combine VIP and PLS regression coefficients for multiple models
-extract_multi_pls_vip_coef <- function(mout_list) {
-  vip_df <- extract_multi_pls_vip(mout_list = mout_list)
-  coef_df <- extract_multi_pls_coef(mout_list = mout_list)
-  dplyr::inner_join(x = vip_df, y = coef_df, by = c("wavenumber", "model"))
-}
-
 # Extract raw spectra (list-column <spc>) and preprocessessed spectra 
 # (list-column <spc_pre>) from total C model (spectra in all other models
 # are the same) into a list containing two data.tables as separate elements ----
@@ -82,7 +41,6 @@ dts <- bind_lcols_dts(spc_tbl = pls_C$data$calibration,
 
 # Convert list of data.tables to long form -------------------------------------
 
-library(data.table)
 dts_long <- purrr::imap(dts, function(dt, nm) {
   dt <- data.table::melt(dt, 
     id.vars = c("spc_id", "lcol_type", "group_id"),
@@ -93,7 +51,6 @@ dts_long <- purrr::imap(dts, function(dt, nm) {
 
 # Annotate peaks in raw spectra based on peak picking --------------------------
 
-library("ChemometricsWithR")
 # Read spectra
 spc_tbl <- readRDS(file = "out/data/spec_chem.Rds")
 spc_tbl_sliced <- spc_tbl %>%
@@ -168,7 +125,6 @@ x_lim <- maxmin(as.numeric(names(dts[["spc"]])[!names(dts[["spc"]]) %in%
 # PLS regression coefficients
 df_vip_pls <- extract_multi_pls_vip_coef(mout_list = mout_list)
 df_vip_pls <- df_vip_pls %>%
-  # filter(model == "pls_C") %>%
   mutate(coef_bigger0 = as.integer(coef > 0)) %>% 
   mutate(coef_bigger0 = coef_bigger0 / 10) %>% 
   mutate(coef_bigger0 = coef_bigger0 - 0.05)
@@ -176,8 +132,6 @@ df_vip_pls <- df_vip_pls %>%
 # Determine highlighted regions above VIP = 1
 rects <- create_vip_rects(df_vip_pls[df_vip_pls$model == "PLSR C", ])
 
-# Jiter text
-library("ggrepel")
 
 # Plot mean replicate spectra --------------------------------------------------
 p_spc <- ggplot(dts_long[["spc"]], 
