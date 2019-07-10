@@ -1,6 +1,6 @@
 # Function that returns number of observations per group (location) and
 # position value relative to median value
-give_n <- function(x) {
+give_n <- function(x, prefix_chars = "") { # "italic(n) == "
   data.frame(
     y = ifelse(
       test = 90 > median(x, na.rm = TRUE) & 
@@ -17,6 +17,6 @@ give_n <- function(x) {
 give_n <- function(x) {
   data.frame(
     y = quantile(x, probs = 0.75), # Position
-    label = paste0("italic(n) == ", length(x))
+    label = paste0("", length(x))
   )
 }

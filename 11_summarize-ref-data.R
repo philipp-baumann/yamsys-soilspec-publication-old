@@ -103,26 +103,26 @@ lbl <- as_labeller(
 p_soilchem <- ggplot(data = yamsys_long) +
   geom_boxplot(aes(x = site_comb, y = value, colour = site_comb), width = 0.6) +
   facet_wrap(~ variable, scales = "free_y", ncol = 6, labeller = lbl) + 
-  coord_fixed() +
   scale_colour_discrete(name = "Location",
     labels = site_names) +
   stat_summary(aes(x = site_comb, y = value),
     fun.data = give_n, geom = "text", fun.y = median, size = 2.75,
     parse = TRUE, vjust = -1.15,
     position = position_dodge(width = 0.75)) +
-  xlab("") + # before: location
-  ylab("Value") +
+  xlab("") +
+  ylab("") +
   scale_x_discrete(labels = c("lo" = "Léo", "mo" = "Midebdo",
     "sb" = "Liliyo", "tb" = "Tiéningboué")) +
-  theme_bw() +
+  theme_minimal() +
   theme(legend.position = c(1, 0), 
         legend.direction = "vertical", legend.justification = c(0.93, 0.3))  +
-  # theme(legend.position = "top", legend.direction = "vertical") +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) # +
-  # theme(strip.background = element_rect(fill = "white"))
-
-# Print soil chemical summary (ggplot object) in RStudio viewer
-#p_soilchem
+  theme(
+    strip.background = element_rect(fill = "white", colour = NA),
+    strip.text = element_text(hjust = 0),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    panel.grid.minor.y = element_blank(),
+    panel.grid.major.x = element_blank()
+  )
 
 # Save graph to file
 pdf(file = "out/figs/summary_soilchem_yamsys.pdf", width = 10, height = 9)
