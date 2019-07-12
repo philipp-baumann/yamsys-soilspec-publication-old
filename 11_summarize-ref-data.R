@@ -149,8 +149,8 @@ yamsys_cormat_long <- yamsys_cormat %>%
   reshape2::melt()
 
 x_labels <- c(
-  `Fe_tot` = "`Total~Fe`",
-  `Si_tot` = "`Total~Si`",
+  `Fe_tot` = "Total~Fe",
+  `Si_tot` = "Total~Si",
   `Al_tot` = "Total~Al",
   `K_tot` = "Total~K",
   `Ca_tot` = "Total~Ca",
@@ -167,7 +167,7 @@ x_labels <- c(
   `ex_Al` = "Al~(exch.)",
   `CEC_eff` = "CEC[eff]",
   `BS_eff` = "BS[eff]",
-  `pH` = "pH(H2O)",
+  `pH` = "pH~(water)",
   `P_resin` = "P~resin",
   `Fe_DTPA` = "Fe~(DTPA)",
   `Zn_DTPA` = "Zn~(DTPA)",
@@ -187,7 +187,7 @@ p_cormat_heatmap <- ggplot(yamsys_cormat_long, aes(Var2, Var1, fill = value)) +
     midpoint = 0, limit = c(-1, 1), na.value = "white", space = "Lab", 
     name = "Pearson\nCorrelation") +
   scale_x_discrete(labels = parse(text = x_labels), position = "top") +
-  scale_y_discrete(labels = y_labels) +
+  scale_y_discrete(labels = parse(text = y_labels)) +
   coord_fixed() +
   geom_text(aes(Var2, Var1,
     label = case_when(map_lgl(value, ~ !is.na(.x)) ~ sprintf("%.1f", value)
