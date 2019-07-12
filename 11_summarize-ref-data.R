@@ -133,3 +133,82 @@ dev.off()
 pdf(file = "manuscript/figs/S3.pdf", width = 10, height = 9)
 p_soilchem
 dev.off()
+
+
+## Create correlation matrix heatmap for soil properties =======================
+
+yamsys_cormat <-
+  data_yamsys %>%
+  select(-c(sample_ID, country, site, material, site_comb)) %>%
+  cor(use = "pairwise.complete.obs") %>%
+  round(1) %>%
+  reorder_cormat() %>%
+  get_upper_tri()
+
+yamsys_cormat_long <- yamsys_cormat %>%
+  reshape2::melt()
+
+x_labels <- c(
+  `Fe_tot` = "`Total~Fe`",
+  `Si_tot` = "`Total~Si`",
+  `Al_tot` = "Total~Al",
+  `K_tot` = "Total~K",
+  `Ca_tot` = "Total~Ca",
+  `Zn_tot` = "Total~Zn",
+  `Cu_tot` = "Total~Cu",
+  `Mn_tot` = "Total~Mn",
+  `C` = "Total~C",
+  `N` = "Total~N",
+  `S` = "Total~S",
+  `P_tot` = "Total~P",
+  `ex_Ca` = "Ca~(exch.)",
+  `ex_Mg` = "Mg~(exch.)",
+  `ex_K` = "K~(exch.)",
+  `ex_Al` = "Al~(exch.)",
+  `CEC_eff` = "CEC[eff]",
+  `BS_eff` = "BS[eff]",
+  `pH` = "pH(H2O)",
+  `P_resin` = "P~resin",
+  `Fe_DTPA` = "Fe~(DTPA)",
+  `Zn_DTPA` = "Zn~(DTPA)",
+  `Cu_DTPA` = "Cu~(DTPA)",
+  `Mn_DTPA` = "Mn~(DTPA)",
+  `sand` = "Sand",
+  `silt` = "Silt",
+  `clay` = "Clay"
+)
+
+y_labels <- rev(x_labels)
+
+# Create a ggheatmap
+p_cormat_heatmap <- ggplot(yamsys_cormat_long, aes(Var2, Var1, fill = value)) +
+  geom_tile(color = "white")+
+  scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
+    midpoint = 0, limit = c(-1, 1), na.value = "white", space = "Lab", 
+    name = "Pearson\nCorrelation") +
+  scale_x_discrete(labels = parse(text = x_labels), position = "top") +
+  scale_y_discrete(labels = y_labels) +
+  coord_fixed() +
+  geom_text(aes(Var2, Var1,
+    label = case_when(map_lgl(value, ~ !is.na(.x)) ~ sprintf("%.1f", value)
+   )),
+    color = "black", size = 3) +
+  theme_minimal() +
+  theme(
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    axis.text.x = element_text(colour = "black", angle = 90, hjust = 0, vjust = 0.5,
+      size = 10),
+    axis.text.y = element_text(colour = "black", size = 10),
+    panel.grid.major = element_blank(),
+    panel.border = element_blank(),
+    panel.background = element_blank(),
+    axis.ticks = element_blank(),
+    legend.justification = c(1, 0),
+    legend.position = c(0.7, 0.4),
+    legend.direction = "horizontal") +
+    guides(fill = guide_colorbar(barwidth = 7, barheight = 1,
+      title.position = "top", title.hjust = 0.5))
+
+cormat_heatmap_pdf <- ggsave(filename = "soilchem-cormat-heatmap.pdf",
+  plot = p_cormat_heatmap, path = here("out", "figs"), width = 9, height = 9)
