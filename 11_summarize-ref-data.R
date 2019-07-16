@@ -148,7 +148,7 @@ yamsys_cormat <-
 yamsys_cormat_long <- yamsys_cormat %>%
   reshape2::melt()
 
-x_labels <- c(
+x_labels_unordered <- c(
   `Fe_tot` = "Total~Fe",
   `Si_tot` = "Total~Si",
   `Al_tot` = "Total~Al",
@@ -178,16 +178,21 @@ x_labels <- c(
   `clay` = "Clay"
 )
 
-y_labels <- rev(x_labels)
+x_levels <- levels(yamsys_cormat_long$Var2)
+x_labels_ordered <- x_labels_unordered[x_levels]
+
+y_levels <- levels(yamsys_cormat_long$Var1)
+y_labels_ordered <- x_labels_unordered[y_levels]
 
 # Create a ggheatmap
-p_cormat_heatmap <- ggplot(yamsys_cormat_long, aes(Var2, Var1, fill = value)) +
-  geom_tile(color = "white")+
+p_cormat_heatmap <- ggplot(yamsys_cormat_long,
+    aes(x = Var2, y = Var1, fill = value)) +
+  geom_tile(color = "white") +
   scale_fill_gradient2(low = "blue", high = "red", mid = "white", 
     midpoint = 0, limit = c(-1, 1), na.value = "white", space = "Lab", 
     name = "Pearson\nCorrelation") +
-  scale_x_discrete(labels = parse(text = x_labels), position = "top") +
-  scale_y_discrete(labels = parse(text = y_labels)) +
+  scale_x_discrete(position = "top", labels = parse(text = x_labels_ordered)) + 
+  scale_y_discrete(labels = parse(text = y_labels_ordered)) +
   coord_fixed() +
   geom_text(aes(Var2, Var1,
     label = case_when(map_lgl(value, ~ !is.na(.x)) ~ sprintf("%.1f", value)
