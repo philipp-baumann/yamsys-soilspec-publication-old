@@ -120,12 +120,15 @@ p_soilchem <- ggplot(data = yamsys_long) +
     strip.background = element_rect(fill = "white", colour = NA),
     strip.text = element_text(hjust = 0),
     axis.text.x = element_text(angle = 45, hjust = 1),
+    axis.ticks = element_line(colour = "black"),
     panel.grid.minor.y = element_blank(),
-    panel.grid.major.x = element_blank()
+    panel.grid.major.x = element_blank(),
+    panel.grid.major.y = element_blank(),
+    axis.line = element_line(colour = "black")
   )
 
 # Save graph to file
-pdf(file = "out/figs/summary_soilchem_yamsys.pdf", width = 10, height = 9)
+pdf(file = "out/figs/summary-soilchem-yamsys.pdf", width = 10, height = 9)
 p_soilchem
 dev.off()
 
