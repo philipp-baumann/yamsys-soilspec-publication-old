@@ -9,14 +9,6 @@
 ##   polish graphs for publication
 ################################################################################
 
-# Load packages
-pkgs <- c("tidyverse", "simplerspec", "here")
-lapply(pkgs, library, character.only = TRUE)
-
-# Model results helpers
-scripts_evaluation <- c(here("R", "utils-model-results.R"))
-walk(scripts_evaluation, source)
-
 ## Collect predicted vs. observed values 
 ## from simplerspec modeling output lists ======================================
 
@@ -102,6 +94,9 @@ predobs_cv <- extract_predobs(model_list = models)
 
 # Extract model evaluation statistics (cross-validation only)
 stats_cv <- extract_stats(model_list = models)
+
+stats_cv_csv <- write_csv(x = stats_cv,
+  path = here("out", "files", "yamsys-data-model-stats.csv"))
 
 ## Select only models for soil properties that have RPD_cv > 2 =================
 
