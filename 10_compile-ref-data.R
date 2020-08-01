@@ -8,10 +8,6 @@
 ##   landscapes
 ################################################################################
 
-# Load packages
-pkgs <- c("tidyverse", "here")
-lapply(pkgs, library, character.only = TRUE)
-
 ## (01) Read and transform pH data =============================================
 
 dat_pH_raw <- read_csv(file = "data/soilchem/data-raw/data-pH.csv")
