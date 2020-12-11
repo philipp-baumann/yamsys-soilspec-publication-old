@@ -266,10 +266,11 @@ list_data_soilchem <- list(
 # Merge data frames into one new data frame, join by sample_ID
 # http://stackoverflow.com/questions/8091303/simultaneously-merge-multiple-data-frames-in-a-list
 
-dat_soilchem <- Reduce(function(...) merge(..., all = TRUE), list_data_soilchem)
+dat_soilchem_reduced <-
+  Reduce(function(...) merge(..., all = TRUE), list_data_soilchem)
 
 # Remove prot_est, N_perc, C_perc, and S_perc
-dat_soilchem <- subset(dat_soilchem, 
+dat_soilchem <- subset(dat_soilchem_reduced, 
   select = - c(N_perc, C_perc, S_perc)
 )
 
@@ -280,4 +281,5 @@ dat_soilchem$site_comb <- as.factor(
 )
 
 # Export combined soil chemical data to csv file; write entire data frame
-write_csv(dat_soilchem, path = "data/soilchem/soilchem_yamsys.csv")
+soilchem_yamsys_csv <-
+  write_csv(dat_soilchem, path = "data/soilchem/soilchem_yamsys.csv")

@@ -114,29 +114,28 @@ map_mo <- filter(data_field, site == "mo") %>%
 
 # Arrange maps per landscape into one graph ------------------------------------
 
-library("cowplot")
 p_map <- plot_grid(map_lo, map_mo, map_tb, map_sb, ncol = 2)
 
 # Save in generic figure output
-pdf(file = "out/figs/field-distribution-per-site.pdf", width = 5, height = 5.25)
-p_map
-dev.off()
-# Save also for publication
-pdf(file = "manuscript/figs/S2.pdf", width = 5, height = 5.25)
-p_map
-dev.off()
+p_map_pdf <- ggsave(filename = "field-distribution-per-site.pdf",  plot = p_map, 
+  path = here(c("out", "figs"), width = 5, height = 5.25)
+
+p_map_pdf_pub <- ggsave(filename = "S2.pdf",  
+  plot = p_map, 
+  path = here(c("out", "manuscript"), width = 5, height = 5.25)
+
 
 ## Use tmap and sf to create a nice map ========================================
 
-library(sf)
+# library(sf)
 
-data_sf <- 
-  data_field %>%
-  filter(site %in% c("tb", "lo", "mo")) %>%
-  st_as_sf(x = ., coords = c("UTM_easting", "UTM_northing"),
-  crs = 4326)
+# data_sf <- 
+#   data_field %>%
+#   filter(site %in% c("tb", "lo", "mo")) %>%
+#   st_as_sf(x = ., coords = c("UTM_easting", "UTM_northing"),
+#   crs = 4326)
 
-ggplot(data = data_sf) + geom_sf()
+# ggplot(data = data_sf) + geom_sf()
 
-df.SP <- st_as_sf(df, coords = c("LONG", "LAT"), crs = 4326)
+# df.SP <- st_as_sf(df, coords = c("LONG", "LAT"), crs = 4326)
 

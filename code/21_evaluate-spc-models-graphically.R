@@ -142,7 +142,7 @@ annotation <- dplyr::mutate(stats_cv,
 
 ## Create labeller for panels (soil property and unit) =========================
 
-lbl <- as_labeller(
+lbl_eval <- as_labeller(
   x = c(
     `pls_Fe_total` = "Total~Fe~'['*g~kg^-1*']'",
     `pls_Al_total` = "Total~Al~'['*g~kg^-1*']'",
@@ -165,7 +165,7 @@ lbl <- as_labeller(
 p_model <- ggplot(data = predobs_cv) +
   geom_point(ggplot2::aes(x = obs, y = pred),
     shape = 1, size = 2, alpha = 1/2, data = predobs_cv) +
-  facet_wrap(~ model, scales = "free", ncol = 4, labeller = lbl) +
+  facet_wrap(~ model, scales = "free", ncol = 4, labeller = lbl_eval) +
   geom_text(data = annotation,
     aes(x = Inf, y = -Inf, label = ncomp), size = 3,
     hjust = 1.15, vjust = -4.5, parse = TRUE) + # !!! additional label
@@ -191,8 +191,8 @@ p_model <- ggplot(data = predobs_cv) +
   theme(strip.background = element_rect(fill = "white"))
 
 ## Save graph to disk
-ggsave(filename = "evaluation-accurate-models.pdf", plot = p_model,
-  path = "out/figs", width = 9, height = 7)
+p_model_pdf <- ggsave(filename = "evaluation-accurate-models.pdf",
+  plot = p_model, path = "out/figs", width = 9, height = 7)
 ## Save a version for the publication
-ggsave(filename = "S4.pdf", plot = p_model,
+p_model_pdf_pub <- ggsave(filename = "S4.pdf", plot = p_model,
   path = "manuscript/figs", width = 9, height = 7)

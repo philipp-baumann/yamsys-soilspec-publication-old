@@ -8,12 +8,9 @@
 ##   pilot landscapes
 ################################################################################
 
-# Load packages
-library("tidyverse")
-
 # Boxplot summary utilities
 scripts_summary <- c(here("R", "utils-graph.R"))
-walk(scripts_summary, source)
+# walk(scripts_summary, source)
 
 ## Make Boxplots soil chemical data summary ====================================
 
@@ -128,14 +125,16 @@ p_soilchem <- ggplot(data = yamsys_long) +
   )
 
 # Save graph to file
-pdf(file = "out/figs/summary-soilchem-yamsys.pdf", width = 10, height = 9)
-p_soilchem
-dev.off()
+p_soilchem_pdf <- ggsave(filename = "summary-soilchem-yamsys.pdf",
+  plot = p_soilchem,
+  path = here("out", "figs"),
+  width = 10, height = 9)
 
 # Save graph also within <publication> folder
-pdf(file = "manuscript/figs/S3.pdf", width = 10, height = 9)
-p_soilchem
-dev.off()
+p_soilchem_pdf_pub <- ggsave(filename = "S3.pdf",
+  plot = p_soilchem,
+  path = here("manuscript", "figs"),
+  width = 10, height = 9)
 
 
 ## Create correlation matrix heatmap for soil properties =======================
