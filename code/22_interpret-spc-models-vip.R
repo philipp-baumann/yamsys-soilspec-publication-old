@@ -9,14 +9,8 @@
 ##   including overlaid raw and preprocessed spectra.
 ################################################################################
 
-
-# Load packages
-pkgs <- c("tidyverse", "data.table", "simplerspec", "here", "ChemometricsWithR",
-  "ggrepel")
-lapply(pkgs, library, character.only = TRUE)
-
 scripts_interpret <- c(here("R", "vip-wrappers.R"))
-walk(scripts_interpret, source)
+# walk(scripts_interpret, source)
 
 ## Read simplerspec model output ===============================================
 
@@ -64,14 +58,14 @@ spc <- do.call(rbind, spc_tbl_sliced$spc) # This is a data frame and data.table
 spc_1 <- as.matrix(spc)[1, ]
 
 # Find possible peaks
-peaks <- pick.peaks(spc_1, 10)
+peaks_init <- pick.peaks(spc_1, 10)
 # Filter spectral noise from prominent peaks (manually)
 len <- length(peaks)
-peaks <- peaks[- (len - c(2, 13, 14, 16:19, 22, 25, 26, 34, 37:57, 61:len))]
+peaks <- peaks_init[- (len - c(2, 13, 14, 16:19, 22, 25, 26, 34, 37:57, 61:len))]
 
 # Check visually
-plot(spc_1, type = "l")
-abline(v = peaks, col = "blue")
+# plot(spc_1, type = "l")
+# abline(v = peaks, col = "blue")
 
 # Return wavenumbers of peaks
 wn <- spc_tbl$wavenumbers[[1]]
@@ -79,7 +73,7 @@ wn_peaks <- wn[peaks]
 round(wn_peaks, 0)
 
 # Get absorbance offset for average maximum absorbance spectrum
-peaks[1]
+# peaks[1]
 peak_pos149 <- as.matrix(spc)[, 149]
 idx_max <- seq_along(peak_pos149)[peak_pos149 == max(peak_pos149)][1] # [1]
 # because three spectra measurements per sample_id with identical mean

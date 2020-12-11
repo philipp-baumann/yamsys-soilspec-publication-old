@@ -14,26 +14,6 @@
 # (https://github.com/philipp-baumann/simplerspec)
 # devtools::install_github("philipp-baumann/simplerspec")
 
-# Load simplerspec package for spectral model development wrapper functions
-library("simplerspec")
-# Load tidyverse package: loads packages frequently used for data manipulation,
-# data tidying, import, and plotting
-library("tidyverse")
-
-## Register parallel backend for using multiple cores ==========================
-
-# Allows to tune the models using parallel processing (e.g. use all available
-# cores of a CPU); caret package automatically detects the registered backend
-library("doParallel")
-# Make a cluster with all possible threads (more than physical cores)
-cl <- makeCluster(detectCores())
-# Register backend
-registerDoParallel(cl)
-# Return number of parallel workers
-getDoParWorkers() # 8 threads on MacBook Pro (Retina, 15-inch, Mid 2015);
-# Quadcore processor
-
-
 ################################################################################
 ## Part 1: Read and pre-process spectra, Read chemical data, and join
 ## spectral and chemical data sets
@@ -61,7 +41,7 @@ spc_tbl <- spc_list %>%
 ## Read chemical reference data and join with spectral data ====================
 
 # Read chemical reference analysis data
-soilchem_tbl <- read_csv(file = "data/soilchem/soilchem_yamsys.csv")
+soilchem_tbl <- read_csv(file = here("data", "soilchem/soilchem_yamsys.csv"))
 
 # Join spectra tibble and chemical reference analysis tibble
 spec_chem <- join_spc_chem(
@@ -184,17 +164,25 @@ pls_Ca_total <- fit_pls(
 
 
 ## =============================================================================
-## 2: Soil properties in the group related to
-## "Mineralogy/Plant Nutrition":
-## pH, exchangeable K, exchangeable Ca, exchangeable Mg,
-## exchangeable Al, CEC, base saturation
-## =============================================================================
+## 2: Soil properti
+# Load simplerspec package for spectral model development wrapper functions
+library("simplerspec")
+# Load tidyverse package: loads packages frequently used for data manipulation,
+# data tidying, import, and plotting
+library("tidyverse")
 
-# pH
-pls_pH <- fit_pls(
-  spec_chem = spec_chem[!is.na(spec_chem$pH), ],
-  response = pH,
-  evaluation_method = "resampling",
+## Register parallel backend for using multiple cores ==========================
+
+# Allows to tune the models using parallel processing (e.g. use all available
+# cores of a CPU); caret package automatically detects the registered backend
+library("doParallel")
+# Make a cluster with all possible threads (more than physical cores)
+cl <- makeCluster(detectCores())
+# Register backend
+registerDoParallel(cl)
+# Return number of parallel workers
+getDoParWorkers() # 8 threads on MacBook Pro (Retina, 15-inch, Mid 2015);
+# Quadcore processor = "resampling",
   tuning_method = "resampling",
   resampling_method = "rep_kfold_cv",
   pls_ncomp_max = 10
@@ -423,10 +411,14 @@ pls_silt <- fit_pls(
 ## total Mn
 ## =============================================================================
 
-saveRDS(pls_Fe_total, "models/rep-kfold-cv/pls_Fe_total.Rds")
-saveRDS(pls_Si_total, "models/rep-kfold-cv/pls_Si_total.Rds")
-saveRDS(pls_Al_total, "models/rep-kfold-cv/pls_Al_total.Rds")
-saveRDS(pls_K_total, "models/rep-kfold-cv/pls_K_total.Rds")
+pls_Fe_total_rds <- 
+  saveRDS(pls_Fe_total, "models/rep-kfold-cv/pls_Fe_total.Rds")
+pls_Si_total_rds <-
+  saveRDS(pls_Si_total, "models/rep-kfold-cv/pls_Si_total.Rds")
+pls_Al_total_rds <-
+  saveRDS(pls_Al_total, "models/rep-kfold-cv/pls_Al_total.Rds")
+pls_K_total_rds <-
+  saveRDS(pls_K_total, "models/rep-kfold-cv/pls_K_total.Rds")
 saveRDS(pls_Ca_total, "models/rep-kfold-cv/pls_Ca_total.Rds")
 saveRDS(pls_Zn_total, "models/rep-kfold-cv/pls_Zn_total.Rds")
 saveRDS(pls_Cu_total, "models/rep-kfold-cv/pls_Cu_total.Rds")
@@ -479,10 +471,10 @@ saveRDS(pls_silt, "models/rep-kfold-cv/pls_silt.Rds")
 saveRDS(pls_clay, "models/rep-kfold-cv/pls_clay.Rds")
 
 # Check if models have been written
-dir("models/rep-kfold-cv")
+check_models_dir <- dir("models/rep-kfold-cv")
 
 # Check model sizes ($model is an object of class "train" (list))
-object.size(pls_resin_P_log$model)
+# object.size(pls_resin_P_log$model)
 # ca. 30MB
 
 ################################################################################
@@ -529,10 +521,11 @@ simplerspec_mout <- list(
 models_train <- map(simplerspec_mout, "model")
 
 # Check size of train list
-object.size(models_train)
+# object.size(models_train)
 
 # Save train list as Rds
-saveRDS(models_train, "models/rep-kfold-cv-caret/pls-models-train-list.Rds")
+models_train_rds <- 
+  saveRDS(models_train, "models/rep-kfold-cv-caret/pls-models-train-list.Rds")
 
 # Read list of trained models
 # models_train <- readRDS(
