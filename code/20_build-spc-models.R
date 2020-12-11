@@ -250,6 +250,16 @@ pls_BS <- fit_pls(
   pls_ncomp_max = 10
 )
 
+# pH
+pls_pH <- fit_pls(
+  spec_chem = spec_chem[!is.na(spec_chem$pH), ],
+  response = pH,
+  evaluation_method = "resampling",
+  tuning_method = "resampling",
+  resampling_method = "rep_kfold_cv",
+  pls_ncomp_max = 10
+)
+
 
 ## =============================================================================
 ## 3: Soil properties in the group related to
