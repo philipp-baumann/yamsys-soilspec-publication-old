@@ -16,9 +16,9 @@ scripts_interpret <- c(here("R", "vip-wrappers.R"))
 
 # Load selection of final models 
 # (previously tuned by repeated k-fold cross-validation)
-pls_C <- readRDS(file = here("models", "rep-kfold-cv", "pls_C.Rds"))
-pls_N <- readRDS(file = here("models", "rep-kfold-cv", "pls_N.Rds"))
-pls_clay <- readRDS(file = here("models", "rep-kfold-cv", "pls_clay.Rds"))
+# pls_C <- readRDS(file = here("models", "rep-kfold-cv", "pls_C.Rds"))
+# pls_N <- readRDS(file = here("models", "rep-kfold-cv", "pls_N.Rds"))
+# pls_clay <- readRDS(file = here("models", "rep-kfold-cv", "pls_clay.Rds"))
 
 # Create a list of models
 mout_list <- list(
