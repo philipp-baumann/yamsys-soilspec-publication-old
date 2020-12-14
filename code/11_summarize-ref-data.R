@@ -35,14 +35,19 @@ yamsys_long <- tidyr::gather(data_yamsys,
 )
 
 # Reorder levels of soil attributes (variable)
-var_levels <- c("Fe_tot", "Si_tot", "Al_tot", "K_tot", "Ca_tot", "Zn_tot", 
-  "Cu_tot", "Mn_tot", "C", "N", "S", "P_tot", 
-  "ex_Ca", "ex_Mg", "ex_K", "ex_Al",
-  "CEC_eff", "BS_eff", "pH", "P_resin",
-  "Fe_DTPA", "Zn_DTPA", "Cu_DTPA", "Mn_DTPA", "sand", "silt", "clay")
+var_levels <- c(
+  "C", "N", "S",
+  "sand", "silt", "clay",
+  "P_tot",
+  "Fe_tot", "Al_tot", "Si_tot", "Ca_tot", "Zn_tot", 
+  "Cu_tot", "K_tot", "Mn_tot",
+  "P_resin",
+  "Fe_DTPA", "Zn_DTPA", "Cu_DTPA", "Mn_DTPA",
+  "pH", "ex_Ca", "ex_Mg", "ex_K", "ex_Al",
+  "CEC_eff", "BS_eff"
+)
 yamsys_long$variable <- factor(yamsys_long$variable, levels = var_levels,
   ordered = TRUE)
-
 
 # Create full names for sites that will be used for the legend -----------------
 site_names <- c(
@@ -103,7 +108,8 @@ p_soilchem <- ggplot(data = yamsys_long) +
   scale_colour_discrete(name = "Location",
     labels = site_names) +
   stat_summary(aes(x = site_comb, y = value),
-    fun.data = give_n, geom = "text", fun.y = median, size = 2.75,
+    fun.data = give_n, geom = "text", 
+    fun = function(x) median(x, na.rm = TRUE), size = 2.75,
     parse = TRUE, vjust = -1.15,
     position = position_dodge(width = 0.75)) +
   xlab("") +
@@ -111,8 +117,8 @@ p_soilchem <- ggplot(data = yamsys_long) +
   scale_x_discrete(labels = c("lo" = "Léo", "mo" = "Midebdo",
     "sb" = "Liliyo", "tb" = "Tiéningboué")) +
   theme_minimal() +
-  theme(legend.position = c(1, 0), 
-        legend.direction = "vertical", legend.justification = c(0.93, 0.3))  +
+    # theme(legend.position = c(1, 0), 
+    # legend.direction = "vertical", legend.justification = c(0.93, 0.3))  +
   theme(
     strip.background = element_rect(fill = "white", colour = NA),
     strip.text = element_text(hjust = 0),
@@ -121,7 +127,8 @@ p_soilchem <- ggplot(data = yamsys_long) +
     panel.grid.minor.y = element_blank(),
     panel.grid.major.x = element_blank(),
     panel.grid.major.y = element_blank(),
-    axis.line = element_line(colour = "black")
+    axis.line = element_line(colour = "black"),
+    legend.position = "none"
   )
 
 # Save graph to file
@@ -132,6 +139,12 @@ p_soilchem_pdf <- ggsave(filename = "summary-soilchem-yamsys.pdf",
 
 # Save graph also within <publication> folder
 p_soilchem_pdf_pub <- ggsave(filename = "S3.pdf",
+  plot = p_soilchem,
+  path = here("manuscript", "figs"),
+  width = 10, height = 9)
+
+# Save graph also within <publication> folder
+p_soilchem_pdf_pub_final <- ggsave(filename = "Figure1.pdf",
   plot = p_soilchem,
   path = here("manuscript", "figs"),
   width = 10, height = 9)
@@ -219,3 +232,7 @@ p_cormat_heatmap <- ggplot(yamsys_cormat_long,
 
 cormat_heatmap_pdf <- ggsave(filename = "soilchem-cormat-heatmap.pdf",
   plot = p_cormat_heatmap, path = here("out", "figs"), width = 9, height = 9)
+
+cormat_heatmap_pdf_pub <- ggsave(filename = "Figure2.pdf",
+  plot = p_cormat_heatmap, path = here("manuscript", "figs"),
+  width = 9, height = 9)
