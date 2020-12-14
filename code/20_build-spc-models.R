@@ -162,34 +162,7 @@ pls_Ca_total <- fit_pls(
   pls_ncomp_max = 10
 )
 
-
-## =============================================================================
-## 2: Soil properti
-# Load simplerspec package for spectral model development wrapper functions
-library("simplerspec")
-# Load tidyverse package: loads packages frequently used for data manipulation,
-# data tidying, import, and plotting
-library("tidyverse")
-
-## Register parallel backend for using multiple cores ==========================
-
-# Allows to tune the models using parallel processing (e.g. use all available
-# cores of a CPU); caret package automatically detects the registered backend
-library("doParallel")
-# Make a cluster with all possible threads (more than physical cores)
-cl <- makeCluster(detectCores())
-# Register backend
-registerDoParallel(cl)
-# Return number of parallel workers
-getDoParWorkers() # 8 threads on MacBook Pro (Retina, 15-inch, Mid 2015);
-# Quadcore processor = "resampling",
-  tuning_method = "resampling",
-  resampling_method = "rep_kfold_cv",
-  pls_ncomp_max = 10
-)
-
-# Exchangable K
-# final number of components is 1 (pls_exch_K$finalModel$ncomp)!
+# Exchangeable K
 pls_exch_K <- fit_pls(
   spec_chem = spec_chem[!is.na(spec_chem$ex_K), ],
   response = ex_K,
@@ -199,7 +172,7 @@ pls_exch_K <- fit_pls(
   pls_ncomp_max = 10
 )
 
-# Exchangable Ca
+# Exchangeable Ca
 # pc = 5 lead to much worse predictions
 pls_exch_Ca <- fit_pls(
   spec_chem = spec_chem[!is.na(spec_chem$ex_Ca), ],
@@ -210,7 +183,7 @@ pls_exch_Ca <- fit_pls(
   pls_ncomp_max = 10
 )
 
-# Exchangable Mg
+# Exchangeable Mg
 pls_exch_Mg <- fit_pls(
   spec_chem = spec_chem[!is.na(spec_chem$ex_Mg), ],
   response = ex_Mg,
@@ -220,7 +193,7 @@ pls_exch_Mg <- fit_pls(
   pls_ncomp_max = 10
 )
 
-# Exchangable Al
+# Exchangeable Al
 pls_exch_Al <- fit_pls(
   spec_chem = spec_chem[!is.na(spec_chem$ex_Al), ],
   response = ex_Al,
