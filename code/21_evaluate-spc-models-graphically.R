@@ -196,3 +196,82 @@ p_model_pdf <- ggsave(filename = "evaluation-accurate-models.pdf",
 ## Save a version for the publication
 p_model_pdf_pub <- ggsave(filename = "S4.pdf", plot = p_model,
   path = "manuscript/figs", width = 9, height = 7)
+
+
+## Create table with summary of model evaluation ===============================
+
+# Rename soil property names in response column data_model_summary
+soil_attributes <- c(
+  "Fe_tot" = "Total Fe [\\SI{}{g\\,kg^{-1}}]",
+  "Si_tot" = "Total Si [\\SI{}{g\\,kg^{-1}}]",
+  "Al_tot" = "Total Al [\\SI{}{g\\,kg^{-1}}]",
+  "K_tot" = "Total K [\\SI{}{g\\,kg^{-1}}]",
+  "Ca_tot" = "Total Ca [\\SI{}{g\\,kg^{-1}}]",
+  "Zn_tot" = "Total Zn [\\SI{}{mg\\,kg^{-1}}]",
+  "Cu_tot" = "Total Cu [\\SI{}{mg\\,kg^{-1}}]",
+  "Mn_tot" = "Total Mn [\\SI{}{mg\\,kg^{-1}}]",
+  "sand" = "Sand [\\%]",
+  "silt" = "Silt [\\%]",
+  "clay" = "Clay [\\%]",
+  "pH" = "pH\\textsubscript{H\\textsubscript{2}0}",
+  "ex_K" = "K (exch.) [\\SI{}{mg\\,kg^{-1}}]",
+  "ex_Ca" = "Ca (exch.) [\\SI{}{mg\\,kg^{-1}}]",
+  "ex_Mg" = "Mg (exch.) [\\SI{}{mg\\,kg^{-1}}]",
+  "ex_Al" = "Al (exch.) [\\SI{}{mg\\,kg^{-1}}]",
+  "CEC_eff" = "\\textsc{cec}\\textsubscript{eff} [\\SI{}{cmol(+)\\,kg^{-1}}]",
+  "BS_eff" = "BS\\textsubscript{eff} [\\%]",
+  "C" = "Total C [\\SI{}{g\\,kg^{-1}}]",
+  "N" = "Total N [\\SI{}{g\\,kg^{-1}}]",
+  "S" = "Total S [\\SI{}{mg\\,kg^{-1}}]",
+  "P_tot" =  "Total P [\\SI{}{mg\\,kg^{-1}}]",
+  "log(P_resin)" = "log(P resin) [\\SI{}{mg\\,kg^{-1}}]",
+  "log(Fe_DTPA)" = "log(Fe(DTPA)) [\\SI{}{mg\\,kg^{-1}}]",
+  "Zn_DTPA" = "Zn\\,(DTPA) [\\SI{}{mg\\,kg^{-1}}]",
+  "Cu_DTPA" = "Cu\\,(DTPA) [\\SI{}{mg\\,kg^{-1}}]",
+  "Mn_DTPA" = "Mn\\,(DTPA) [\\SI{}{mg\\,kg^{-1}}]"
+)
+# Selection of columns in data_model_summary
+model_summary_vars <- c("response", "n",
+  "min_obs", "max_obs", "median_obs", "mean_obs",
+  "CV", "dataType", "ncomp", "rmse", "r2", "rpd")
+
+# data_model_summary <- read_csv(
+#   file = here::here("out", "files", "yamsys-data-model-stats.csv"))
+
+  # omit: # "SB_prop", "NU_prop", "LC_prop"
+# Select only set of evaluation statistics for cross-validation
+model_summary <- stats_cv_raw[, model_summary_vars] %>%
+  filter(dataType == "Cross-validation") %>%
+  select(- dataType)
+# Revalue with new soil attribute names
+model_summary$response <- plyr::revalue(
+  model_summary$response, soil_attributes
+)
+# Reset column names for publication table
+colnames(model_summary) <- c("Soil attribute", "$n$",
+  "Min\\textsubscript{obs.}", "Max\\textsubscript{obs.}",
+  "Med\\textsubscript{obs.}", "Mean\\textsubscript{obs.}",
+  "\\textsc{cv}\\textsubscript{obs.}", "ncomp",
+  "\\textsc{rmse}\\textsubscript{rcv}",
+  "$R^2\\textsubscript{rcv}$", "\\textsc{rpd}\\textsubscript{rcv}")
+  # "SB\\textsubscript{rel} [\\%]",
+  # "NU\\textsubscript{rel} [\\%]",
+  # "LC\\textsubscript{rel} [\\%]")
+# Also consider http://latex.org/forum/viewtopic.php?t=3970
+# cat("\\begin{adjustwidth}{-2.25in}{0in}")
+# cat("\\makebox[\\textwidth + 5in]{")
+# Set number of digits per column and row
+# Specifiy digits for each row and column
+# https://stackoverflow.com/questions/14404241/set-digits-row-wise-with-print-xtable-in-r
+mdat <- matrix(
+  c(0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 2, 1), # use recycling
+  nrow = nrow(model_summary), ncol = ncol(model_summary) + 1,
+  byrow = TRUE # change values
+)
+## Some more custom formatting specific for soil attributes (rows)
+# Total Fe, Total Si, Total Al, Total K, Total Zn, Total Cu, Total Mn
+mdat[c(1:4, 6:8), c(4:7, 10)] <- rep(0, 5)
+# K (exch.), Ca (exch.), Mg (exch.), Al (exch.), BS_eff
+mdat[c(13:16, 18, 6:8), c(4:7, 10)] <- rep(0, 5)
+# Total S, Total P
+mdat[21:22, c(4:7, 10)] <- rep(0, 5)
