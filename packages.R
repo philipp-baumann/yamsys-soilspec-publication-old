@@ -1,6 +1,7 @@
 suppressPackageStartupMessages(
   xfun::pkg_attach(
-    c("drake", "tidyverse", "here", "R.utils", "cowplot", "ggrepel",
-      "simplerspec", "doFuture", "data.table")
+    c("drake", "tidyverse", "here", "R.utils", "cowplot", "ggrepel", "xtable",
+      "simplerspec", "doFuture", "data.table",
+      "ChemometricsWithR")
   )
 )
