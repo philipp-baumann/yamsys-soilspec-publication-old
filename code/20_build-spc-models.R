@@ -25,7 +25,7 @@
 lf <- dir("data/spectra", full.names = TRUE)
 
 # Read files: ETH
-spc_list <- read_opus_univ(fnames = lf, extract = "spc", 
+spc_list <- read_opus_univ(fnames = lf, extract = "spc",
   parallel = TRUE)
 
 ## Spectral data processing pipe ===============================================
