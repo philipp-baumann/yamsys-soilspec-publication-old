@@ -60,7 +60,7 @@ spc_1 <- as.matrix(spc)[1, ]
 # Find possible peaks
 peaks_init <- pick.peaks(spc_1, 10)
 # Filter spectral noise from prominent peaks (manually)
-len <- length(peaks)
+len <- length(peaks_init)
 peaks <- peaks_init[- (len - c(2, 13, 14, 16:19, 22, 25, 26, 34, 37:57, 61:len))]
 
 # Check visually
@@ -197,14 +197,18 @@ p_vip <- ggplot(data = df_vip_pls,
 
 # Arrange plots in panels without margins --------------------------------------
 # No margins in between
-p_comb <- cowplot::plot_grid(
+p_spc_interpr_comb <- cowplot::plot_grid(
   p_spc, p_spc_pre, p_vip, rel_heights = c(0.35, 0.3, 0.6),
   ncol = 1, align = "v")
 
 # Save graph 
-ggsave(filename = "spc-pls-vip.pdf", plot = p_comb, path = "out/figs",
+p_spc_interpr_comb_pdf <- ggsave(filename = "spc-pls-vip.pdf",
+  plot = p_spc_interpr_comb,
+  path = here("out", "figs"),
   width = 6.5, height = 5)
+  
 # Save version for manuscript
-ggsave(filename = "S5.pdf", plot = p_comb, path = "manuscript/figs",
+p_spc_interpr_comb_pdf_manuscr <- ggsave(filename = "Figure4.pdf",
+  plot = p_spc_interpr_comb, 
+  path = here("manuscript", "figs"),
   width = 6.5, height = 5)
-
