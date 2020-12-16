@@ -150,9 +150,26 @@ p_soilchem_pdf_pub_final <- ggsave(filename = "Figure1.pdf",
   width = 10, height = 9)
 
 
-## Create correlation matrix heatmap for soil properties =======================
+## Numerical summary of measured soil properties ===============================
 
-yamsys_cormat <-
+# Group and summarize chemical reference analysis data by site
+soilchem_summary <- 
+  dat_soilchem %>%
+  group_by(site_comb) %>% # group by combined site
+  summarize_if(.predicate = is.numeric,
+    .funs = funs(mean, median, diff(range(.)), sd), na.rm = TRUE)
+
+# Summarize per country
+soilchem_country <-
+  dat_soilchem %>%
+  group_by(country) %>%
+  summarize_if(.predicate = is.numeric,
+    .funs = funs(mean, sd), na.rm = TRUE)
+
+
+## Create correlation matrix heatmap for soil properties =======================
+  
+ yamsys_cormat <-
   data_yamsys %>%
   select(-c(sample_ID, country, site, material, site_comb)) %>%
   cor(use = "pairwise.complete.obs") %>%
