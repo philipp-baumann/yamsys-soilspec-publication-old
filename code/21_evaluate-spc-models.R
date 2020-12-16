@@ -115,9 +115,10 @@ predobs_cv <- predobs_cv %>%
 ## Reorder factor levels to realize custom panel order in plot =================
 
 # Reorder levels of soil attributes (variable)
-var_levels <- c("pls_Fe_total", "pls_Al_total", "pls_K_total", "pls_Ca_total", 
-  "pls_C", "pls_N", "pls_S", "pls_exch_Ca", "pls_CEC", "pls_Fe_DTPA_log",
-  "pls_clay")
+var_levels <- c("pls_C",  "pls_N", "pls_S",  "pls_clay", 
+  "pls_Fe_total", "pls_Al_total", "pls_Ca_total", "pls_K_total", 
+  "pls_exch_Ca", "pls_CEC", "pls_Fe_DTPA_log"
+)
 predobs_cv$model <- factor(predobs_cv$model, levels = var_levels,
   ordered = TRUE)
 stats_cv$model <- factor(stats_cv$model, levels = var_levels,
@@ -186,15 +187,15 @@ p_model <- ggplot(data = predobs_cv) +
   geom_text(data = annotation,
     aes(x = Inf, y = Inf, label = one_one), size = 3,
     hjust = 2.5, vjust = 2, colour = "red") +
-  xlab("Observed") +
-  ylab("Predicted (5 times 10-fold cross-validation)") +
+  xlab("Measured") +
+  ylab("Predicted") +
   theme(strip.background = element_rect(fill = "white"))
 
 ## Save graph to disk
 p_model_pdf <- ggsave(filename = "evaluation-accurate-models.pdf",
   plot = p_model, path = "out/figs", width = 9, height = 7)
 ## Save a version for the publication
-p_model_pdf_pub <- ggsave(filename = "S4.pdf", plot = p_model,
+p_model_pdf_pub <- ggsave(filename = "Figure3.pdf", plot = p_model,
   path = "manuscript/figs", width = 9, height = 7)
 
 
@@ -202,33 +203,33 @@ p_model_pdf_pub <- ggsave(filename = "S4.pdf", plot = p_model,
 
 # Rename soil property names in response column data_model_summary
 soil_attributes <- c(
-  "Fe_tot" = "Total Fe [\\SI{}{g\\,kg^{-1}}]",
-  "Si_tot" = "Total Si [\\SI{}{g\\,kg^{-1}}]",
-  "Al_tot" = "Total Al [\\SI{}{g\\,kg^{-1}}]",
-  "K_tot" = "Total K [\\SI{}{g\\,kg^{-1}}]",
-  "Ca_tot" = "Total Ca [\\SI{}{g\\,kg^{-1}}]",
-  "Zn_tot" = "Total Zn [\\SI{}{mg\\,kg^{-1}}]",
-  "Cu_tot" = "Total Cu [\\SI{}{mg\\,kg^{-1}}]",
-  "Mn_tot" = "Total Mn [\\SI{}{mg\\,kg^{-1}}]",
+  "C" = "Total C [\\unit{}{g\\,kg$^{-1}$}]",
+  "N" = "Total N [\\unit{}{g\\,kg$^{-1}$}]",
+  "S" = "Total S [\\unit{}{mg\\,kg$^{-1}$}]",
   "sand" = "Sand [\\%]",
   "silt" = "Silt [\\%]",
   "clay" = "Clay [\\%]",
+  "P_tot" =  "Total P [\\unit{}{mg\\,kg$^{-1}$}]",
+  "Fe_tot" = "Total Fe [\\unit{}{g\\,kg$^{-1}$}]",
+  "Al_tot" = "Total Al [\\unit{}{g\\,kg$^{-1}$}]",
+  "Si_tot" = "Total Si [\\unit{}{g\\,kg$^{-1}$}]",
+  "Ca_tot" = "Total Ca [\\unit{}{g\\,kg$^{-1}$}]",
+  "Zn_tot" = "Total Zn [\\unit{}{mg\\,kg$^{-1}$}]",
+  "Cu_tot" = "Total Cu [\\unit{}{mg\\,kg$^{-1}$}]",
+  "K_tot" = "Total K [\\unit{}{g\\,kg$^{-1}$}]",
+  "Mn_tot" = "Total Mn [\\unit{}{mg\\,kg$^{-1}$}]",
+  "log(P_resin)" = "log(P resin) [\\unit{}{mg\\,kg$^{-1}$}]",
+  "log(Fe_DTPA)" = "log(Fe(DTPA)) [\\unit{}{mg\\,kg$^{-1}$}]",
+  "Zn_DTPA" = "Zn\\,(DTPA) [\\unit{}{mg\\,kg$^{-1}$}]",
+  "Cu_DTPA" = "Cu\\,(DTPA) [\\unit{}{mg\\,kg$^{-1}$}]",
+  "Mn_DTPA" = "Mn\\,(DTPA) [\\unit{}{mg\\,kg$^{-1}$}]",
   "pH" = "pH\\textsubscript{H\\textsubscript{2}0}",
-  "ex_K" = "K (exch.) [\\SI{}{mg\\,kg^{-1}}]",
-  "ex_Ca" = "Ca (exch.) [\\SI{}{mg\\,kg^{-1}}]",
-  "ex_Mg" = "Mg (exch.) [\\SI{}{mg\\,kg^{-1}}]",
-  "ex_Al" = "Al (exch.) [\\SI{}{mg\\,kg^{-1}}]",
-  "CEC_eff" = "\\textsc{cec}\\textsubscript{eff} [\\SI{}{cmol(+)\\,kg^{-1}}]",
-  "BS_eff" = "BS\\textsubscript{eff} [\\%]",
-  "C" = "Total C [\\SI{}{g\\,kg^{-1}}]",
-  "N" = "Total N [\\SI{}{g\\,kg^{-1}}]",
-  "S" = "Total S [\\SI{}{mg\\,kg^{-1}}]",
-  "P_tot" =  "Total P [\\SI{}{mg\\,kg^{-1}}]",
-  "log(P_resin)" = "log(P resin) [\\SI{}{mg\\,kg^{-1}}]",
-  "log(Fe_DTPA)" = "log(Fe(DTPA)) [\\SI{}{mg\\,kg^{-1}}]",
-  "Zn_DTPA" = "Zn\\,(DTPA) [\\SI{}{mg\\,kg^{-1}}]",
-  "Cu_DTPA" = "Cu\\,(DTPA) [\\SI{}{mg\\,kg^{-1}}]",
-  "Mn_DTPA" = "Mn\\,(DTPA) [\\SI{}{mg\\,kg^{-1}}]"
+  "ex_Ca" = "Ca (exch.) [\\unit{}{mg\\,kg$^{-1}$}]",
+  "ex_Mg" = "Mg (exch.) [\\unit{}{mg\\,kg$^{-1}$}]",
+  "ex_K" = "K (exch.) [\\unit{}{mg\\,kg$^{-1}$}]",
+  "ex_Al" = "Al (exch.) [\\unit{}{mg\\,kg$^{-1}$}]",
+  "CEC_eff" = "\\textsc{cec}\\textsubscript{eff} [\\unit{}{cmol(+)\\,kg$^{-1}$}]",
+  "BS_eff" = "BS\\textsubscript{eff} [\\%]"
 )
 # Selection of columns in data_model_summary
 model_summary_vars <- c("response", "n",
@@ -240,20 +241,28 @@ model_summary_vars <- c("response", "n",
 
   # omit: # "SB_prop", "NU_prop", "LC_prop"
 # Select only set of evaluation statistics for cross-validation
-model_summary <- stats_cv_raw[, model_summary_vars] %>%
+model_summary_unoredered <- stats_cv_raw[, model_summary_vars] %>%
   filter(dataType == "Cross-validation") %>%
   select(- dataType)
+
+model_summary_unoredered$response <- factor(model_summary_unoredered$response, 
+  levels = names(soil_attributes), ordered = TRUE)
+
+# Order rows by factor level of values of response column
+model_summary <-
+  model_summary_unoredered[order(model_summary_unoredered$response), ]
+
 # Revalue with new soil attribute names
 model_summary$response <- plyr::revalue(
   model_summary$response, soil_attributes
 )
 # Reset column names for publication table
 colnames(model_summary) <- c("Soil attribute", "$n$",
-  "Min\\textsubscript{obs.}", "Max\\textsubscript{obs.}",
-  "Med\\textsubscript{obs.}", "Mean\\textsubscript{obs.}",
-  "\\textsc{cv}\\textsubscript{obs.}", "ncomp",
-  "\\textsc{rmse}\\textsubscript{rcv}",
-  "$R^2\\textsubscript{rcv}$", "\\textsc{rpd}\\textsubscript{rcv}")
+  "Min\\textsubscript{meas.}", "Max\\textsubscript{meas.}",
+  "Med\\textsubscript{meas.}", "Mean\\textsubscript{meas.}",
+  "\\textsc{cv}\\textsubscript{meas.}", "ncomp",
+  "\\textsc{rmse}\\textsubscript{cv}",
+  "$R^2\\textsubscript{cv}$", "\\textsc{rpd}\\textsubscript{cv}")
   # "SB\\textsubscript{rel} [\\%]",
   # "NU\\textsubscript{rel} [\\%]",
   # "LC\\textsubscript{rel} [\\%]")
@@ -270,8 +279,32 @@ mdat <- matrix(
 )
 ## Some more custom formatting specific for soil attributes (rows)
 # Total Fe, Total Si, Total Al, Total K, Total Zn, Total Cu, Total Mn
-mdat[c(1:4, 6:8), c(4:7, 10)] <- rep(0, 5)
+mdat[8:10, c(4:7, 10)] <- rep(0, 5)
+# Total C
+mdat[c(1, 4:6), c(4:7, 10)] <- rep(1, 5)
+# Total N
+mdat[2, c(4:7, 10)] <- rep(2, 5)
 # K (exch.), Ca (exch.), Mg (exch.), Al (exch.), BS_eff
-mdat[c(13:16, 18, 6:8), c(4:7, 10)] <- rep(0, 5)
+mdat[c(22:25, 27), c(4:7, 10)] <- rep(0, 5)
+# CEC_eff
+mdat[26, c(4:7, 10)] <- rep(1, 5)
 # Total S, Total P
-mdat[21:22, c(4:7, 10)] <- rep(0, 5)
+mdat[c(3, 7), c(4:7, 10)] <- rep(0, 5)
+
+model_summary_xtable <- print(
+  xtable(x = model_summary, digits = mdat,
+    align = c("l", "l", rep("c", ncol(model_summary) - 1))),
+  type = "latex", # this uses tabular environment
+  # file = here("out", "tables", "spc-model-eval.tex"),
+  # tabular.environment = "tabularx",
+  include.rownames = FALSE,
+  sanitize.colnames.function = identity,
+  sanitize.text.function = identity,
+  # http://christophj.github.io/replicating/r/how-to-produce-nice-tables-in-pdfs-using-knitr-sweave-and-r/
+  hline.after = NULL, # see link above
+  booktabs = TRUE,
+  add.to.row = list(
+    pos = list(-1, 0, nrow(model_summary)),
+    command = c("\\tophline{}", "\\middlehline{}", "\\bottomhline{}")
+  )
+)
