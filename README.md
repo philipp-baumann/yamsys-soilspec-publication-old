@@ -69,7 +69,7 @@ project main directory:
 | `./code/` | [`11_summarize-ref-data.R`](11_summarize-ref-data.R) | Summarize chemical reference analysis data using boxplots by soil property and landscape. |
 | `./code/` | [`12_create-sampling-maps.R`](12_create-sampling-maps.R) | Create geographical maps that depict positions of sampled fields within the four pilot landscapes.
 | `./code/` | [`20_build-spc-models.R`](20_build-spc-models.R) | Build spectroscopic reference models covering sampled fields within the four YAMSYS pilot landscapes. Tune PLS regression models using 5 times repeated 10-fold cross-validation, and derive final models at optimal number of components, develop one final model for each soil property. |
-| `./code/` |  [`21_evaluate-spc-models.R`](21_evaluate-spc-models-graphicall.R) | Make model evaluation summary (predicted vs. observed) plots for models with R-squared higher than 0.75). |
+| `./code/` |  [`21_evaluate-spc-models.R`](21_evaluate-spc-models.R) | Make model evaluation summary (predicted vs. observed) plots for models with R-squared higher than 0.75). |
 | `./code/` |  [`22_interpret-spc-models-vip.R`](22_interpret-spc-models-vip.R) | Compute and plot Variable Importance in the Projection (VIP) scores of PLS regression models for total soil C, total N and clay content, including overlaid raw and preprocessed spectra. |
 | [`./data/`](data) | ... | Contains all input data required for data transformation, analysis and modeling within the R environment for statistical computing. |
 | [`./data/metadata-field/`](data/metadata-field) | [`metadata-field-yamsys.csv`](data/metadata-field/metadata-field-yamsys.csv) | Contains metadata about sampled yam fields as `.csv` text file. |
