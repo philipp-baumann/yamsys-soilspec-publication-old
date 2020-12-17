@@ -23,25 +23,39 @@ the manuscript including table and figure outputs.
 
 ```
 .
-├── 10_compile-ref-data.R
-├── 11_summarize-ref-data.R
-├── 12_create-sampling-maps.R
-├── 20_build-spc-models.R
-├── 21_evaluate-spc-models-graphically.R
-├── 22_interpret-spc-models-vip.R
 ├── LICENSE
+├── R
+│   ├── utils-graph.R
+│   ├── utils-misc.R
+│   ├── utils-model-results.R
+│   └── vip-wrappers.R
+├── README.html
 ├── README.md
+├── _drake.R
+├── _make.R
+├── code
+│   ├── 10_compile-ref-data.R
+│   ├── 11_summarize-ref-data.R
+│   ├── 12_create-sampling-maps.R
+│   ├── 20_build-spc-models.R
+│   ├── 21_evaluate-spc-models.R
+│   └── 22_interpret-spc-models-vip.R
 ├── data
 │   ├── metadata-field
 │   ├── soilchem
 │   └── spectra
-├── manuscript
-│   ├── figs
 ├── models
-│   └── rep-kfold-cv
+│   ├── rep-kfold-cv
+│   └── rep-kfold-cv-all-vars
 ├── out
 │   ├── data
-│   └── figs
+│   ├── figs
+│   ├── files
+│   └── tables
+├── packages.R
+├── renv
+│   ├── library
+│   └── settings.dcf
 └── yamsys-soilspec-publication.Rproj
 ```
 
@@ -68,6 +82,7 @@ project main directory:
 | [`./out/data/`](out/data) | [`spec_chem.Rds`](out/data/spec_chem.Rds) | Tibble data frame containing the following columns for each replicate spectrum (row): measurement IDs (columns `unique_id`, `file_id`, `sample_id`); spectral metadata (list-column column `metadata`; list of tibble data frames); raw, resampled and preprocessed spectral data as lists of `data.tables` (list-columns `spc`, `spc_rs` and `spc_pre`); wavenumber vectors of raw, resampled and preprocessed spectra (list-columns `wavenumbers`, `wavenumbers_rs` and `xvalues_pre`). |
 | [`./out/figs/`](out/figs) | `.pdf` | Figure output for the manuscript, the same duplicate files are also generated within `./manuscript/figs/`, but here named verbosely instead of following figure naming submission requirements of the journal. |
 | `./` |  [`yamsys-soilspec-publication.Rproj`](yamsys-soilspec-publication.Rproj) | RStudio project file that can be used as a shortcut for opening the project directly from the file system. Double-clicking this file after downloading, the entire self-contained project will open RStudio and automatically set the R working directory to the project root. This avoids hard-coding file paths beneath the project directory hierarchy within all R scripts, thereby facilitating code transfer for spectroscopic models and reproducibility. See [here](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects) for details. |
+| `./` | [`packages.R`](packages.R) | Script that loads all R packages required for the analysis. |
 
 # R session info
 
