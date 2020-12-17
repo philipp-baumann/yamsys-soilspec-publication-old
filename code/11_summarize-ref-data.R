@@ -9,11 +9,9 @@
 ################################################################################
 
 # Boxplot summary utilities
-scripts_summary <- c(here("R", "utils-graph.R"))
-# walk(scripts_summary, source)
+# scripts_summary <- source(here("R", "utils-graph.R"))
 
 ## Make Boxplots soil chemical data summary ====================================
-
 
 # Read complete YamSys soil data
 data_yamsys <- read_csv(file = "data/soilchem/soilchem_yamsys.csv")
@@ -41,7 +39,7 @@ var_levels <- c(
   "P_tot",
   "Fe_tot", "Al_tot", "Si_tot", "Ca_tot", "Zn_tot", 
   "Cu_tot", "K_tot", "Mn_tot",
-  "P_resin",
+  # "P_resin",
   "Fe_DTPA", "Zn_DTPA", "Cu_DTPA", "Mn_DTPA",
   "pH", "ex_Ca", "ex_Mg", "ex_K", "ex_Al",
   "CEC_eff", "BS_eff"
@@ -87,7 +85,7 @@ lbl <- as_labeller(
     `CEC_eff` = "CEC[eff]~'[cmol(+)'~kg^-1*']'",
     `BS_eff` = "BS[eff]~'[%]'",
     `pH` = "'pH('*H[2]*'O)'",
-    `P_resin` = "P~resin~'['*mg~kg^-1*']'",
+    # `P_resin` = "P~resin~'['*mg~kg^-1*']'",
     `Fe_DTPA` = "Fe~(DTPA)~'['*mg~kg^-1*']'",
     `Zn_DTPA` = "Zn~(DTPA)~'['*mg~kg^-1*']'",
     `Cu_DTPA` = "Cu~(DTPA)~'['*mg~kg^-1*']'",
@@ -200,7 +198,7 @@ x_labels_unordered <- c(
   `CEC_eff` = "CEC[eff]",
   `BS_eff` = "BS[eff]",
   `pH` = "pH~(water)",
-  `P_resin` = "P~resin",
+  # `P_resin` = "P~resin",
   `Fe_DTPA` = "Fe~(DTPA)",
   `Zn_DTPA` = "Zn~(DTPA)",
   `Cu_DTPA` = "Cu~(DTPA)",
