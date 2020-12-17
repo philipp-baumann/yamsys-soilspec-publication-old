@@ -256,7 +256,7 @@ list_data_soilchem <- list(
   dat_CNS,
   dat_exch_cations,
   dat_pH,
-  dat_resin_P,
+  # dat_resin_P,
   dat_element_total,
   dat_dtpa,
   dat_texture

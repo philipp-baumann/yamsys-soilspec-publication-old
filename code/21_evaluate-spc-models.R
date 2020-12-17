@@ -79,7 +79,7 @@ models <- list(
   "pls_N" = pls_N,
   "pls_S" = pls_S,
   "pls_P" = pls_P,
-  "pls_resin_P_log" = pls_resin_P_log,
+  # "pls_resin_P_log" = pls_resin_P_log,
   "pls_Fe_DTPA_log" = pls_Fe_DTPA_log,
   "pls_Zn_DTPA" = pls_Zn_DTPA,
   "pls_Cu_DTPA" = pls_Cu_DTPA,
@@ -218,7 +218,7 @@ soil_attributes <- c(
   "Cu_tot" = "Total Cu [\\unit{}{mg\\,kg$^{-1}$}]",
   "K_tot" = "Total K [\\unit{}{g\\,kg$^{-1}$}]",
   "Mn_tot" = "Total Mn [\\unit{}{mg\\,kg$^{-1}$}]",
-  "log(P_resin)" = "log(P resin) [\\unit{}{mg\\,kg$^{-1}$}]",
+  # "log(P_resin)" = "log(P resin) [\\unit{}{mg\\,kg$^{-1}$}]",
   "log(Fe_DTPA)" = "log(Fe(DTPA)) [\\unit{}{mg\\,kg$^{-1}$}]",
   "Zn_DTPA" = "Zn\\,(DTPA) [\\unit{}{mg\\,kg$^{-1}$}]",
   "Cu_DTPA" = "Cu\\,(DTPA) [\\unit{}{mg\\,kg$^{-1}$}]",
@@ -263,12 +263,6 @@ colnames(model_summary) <- c("Soil attribute", "$n$",
   "\\textsc{cv}\\textsubscript{meas.}", "ncomp",
   "\\textsc{rmse}\\textsubscript{cv}",
   "$R^2\\textsubscript{cv}$", "\\textsc{rpd}\\textsubscript{cv}")
-  # "SB\\textsubscript{rel} [\\%]",
-  # "NU\\textsubscript{rel} [\\%]",
-  # "LC\\textsubscript{rel} [\\%]")
-# Also consider http://latex.org/forum/viewtopic.php?t=3970
-# cat("\\begin{adjustwidth}{-2.25in}{0in}")
-# cat("\\makebox[\\textwidth + 5in]{")
 # Set number of digits per column and row
 # Specifiy digits for each row and column
 # https://stackoverflow.com/questions/14404241/set-digits-row-wise-with-print-xtable-in-r
@@ -285,9 +279,9 @@ mdat[c(1, 4:6), c(4:7, 10)] <- rep(1, 5)
 # Total N
 mdat[2, c(4:7, 10)] <- rep(2, 5)
 # K (exch.), Ca (exch.), Mg (exch.), Al (exch.), BS_eff
-mdat[c(22:25, 27), c(4:7, 10)] <- rep(0, 5)
+mdat[c(21:24, 26), c(4:7, 10)] <- rep(0, 5)
 # CEC_eff
-mdat[26, c(4:7, 10)] <- rep(1, 5)
+mdat[25, c(4:7, 10)] <- rep(1, 5)
 # Total S, Total P
 mdat[c(3, 7), c(4:7, 10)] <- rep(0, 5)
 
