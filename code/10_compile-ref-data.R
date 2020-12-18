@@ -54,11 +54,11 @@ dat_CNS$N <- dat_CNS$N_perc * 10
 # Read data for resin P --------------------------------------------------------
 
 # Series 1: No dilution
-dat_resin_P1 <- read_csv("data/soilchem/data-raw/data-resin-P-cal1.csv")
+dat_resin_P1_raw <- read_csv("data/soilchem/data-raw/data-resin-P-cal1.csv")
 # Series 2: 1:1 and 1:3 dilution
-dat_resin_P2 <- read_csv("data/soilchem/data-raw/data-resin-P-cal2.csv")
+dat_resin_P2_raw <- read_csv("data/soilchem/data-raw/data-resin-P-cal2.csv")
 # Series 2: 1:10 dilution (2 samples; measured by Eva)
-dat_resin_P3 <- read_csv("data/soilchem/data-raw/data-resin-P-cal3.csv")
+dat_resin_P3_raw <- read_csv("data/soilchem/data-raw/data-resin-P-cal3.csv")
 
 
 # Calculate resin P values for samples from series 1 (no dilution) -------------
@@ -95,19 +95,19 @@ cal_P3 <- function(df, P_stnd, h2o, m1, m2, abs) {
 }
 
 # Predict P_measured for series 1 (no dilution)
-dat_resin_P1 <- cal_P(dat_resin_P1)
+dat_resin_P1 <- cal_P(dat_resin_P1_raw)
 
 # Predict P_measured for series 2 (1:1 and 1:3 dilution)
-dat_resin_P2 <- cal_P(dat_resin_P2)
+dat_resin_P2 <- cal_P(dat_resin_P2_raw)
 
 # Predict P_measured for series 3 (1:10 dilution of samples;
 # standard and measurement of 2 samples by Eva)
-dat_resin_P3 <- cal_P3(dat_resin_P3)
+dat_resin_P3 <- cal_P3(dat_resin_P3_raw)
 
 # Combine data
 dat_resin_P <- rbind(dat_resin_P1, dat_resin_P2, dat_resin_P3)
-dat_resin_P[duplicated(dat_resin_P$sample_ID),]
-duplicated(dat_resin_P$sample_ID)
+# dat_resin_P[duplicated(dat_resin_P$sample_ID),] 
+# any(duplicated(dat_resin_P$sample_ID))
 
 # Calculate mean resin_P
 dat_resin_P <- dat_resin_P %>%
